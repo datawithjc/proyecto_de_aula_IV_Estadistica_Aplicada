@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estadística Aplicada · Guía del Proyecto de Aula — Tecnología en Control de Calidad</title>
+<meta name="description" content="Guía completa de Estadística Aplicada para el Proyecto de Aula de Cuarto Semestre: 14 bloques temáticos, definiciones, fórmulas, ejemplos guiados sobre el instrumento diagnóstico, 20 ejercicios resueltos y 30 propuestos.">
+<meta name="author" content="Juan Carlos Acosta Jiménez">
+<meta property="og:title" content="Estadística Aplicada · Guía del Proyecto de Aula">
+<meta property="og:description" content="14 bloques temáticos, 4 ejemplos guiados, 20 ejercicios resueltos y 30 propuestos para el diagnóstico estadístico de procesos.">
+<meta property="og:type" content="website">
+<script>
+window.MathJax={
+  tex:{inlineMath:[['\\(','\\)']], displayMath:[['\\[','\\]']], processEscapes:true},
+  options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},
+  chtml:{scale:0.98}
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  onerror="var s=document.createElement('script');s.async=true;s.id='MathJax-script';
+           s.src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js';
+           document.head.appendChild(s);"></script>
+<style>
+:root{
+  --navy:#16305C; --navy-2:#24467D; --navy-soft:#EEF2F9;
+  --red:#9E1B32; --red-soft:#FBEEF1;
+  --teal:#0E6E70; --teal-soft:#E7F3F3;
+  --amber:#8A5B00; --amber-soft:#FDF3E0;
+  --bg:#F6F8FC; --card:#FFFFFF; --ink:#161A22; --muted:#5A6373; --line:#E1E6F0;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  --sans:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  --radius:14px; --shadow:0 1px 2px rgba(22,48,92,.06),0 8px 24px rgba(22,48,92,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:78px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     font-size:16.5px;line-height:1.68;-webkit-font-smoothing:antialiased}
+a{color:var(--navy-2);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;margin:0}
+
+/* ---------- barra superior ---------- */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1280px;margin:0 auto;padding:.6rem 1.2rem;display:flex;
+  align-items:center;gap:1rem}
+.brand{display:flex;align-items:center;gap:.65rem;font-weight:700;color:var(--navy);
+  font-size:1rem;letter-spacing:-.01em}
+.brand .dot{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--navy),var(--navy-2));
+  color:#fff;display:grid;place-items:center;font-size:.85rem;font-weight:800}
+.topnav{margin-left:auto;display:flex;gap:.2rem;flex-wrap:wrap}
+.topnav a{padding:.4rem .7rem;border-radius:8px;font-size:.86rem;color:var(--muted);font-weight:600}
+.topnav a:hover{background:var(--navy-soft);color:var(--navy);text-decoration:none}
+#menuBtn{display:none;margin-left:auto;background:var(--navy);color:#fff;border:0;
+  border-radius:9px;padding:.45rem .8rem;font-size:.9rem;font-weight:600;cursor:pointer}
+
+/* ---------- estructura ---------- */
+.wrap{max-width:1280px;margin:0 auto;padding:0 1.2rem;display:grid;
+  grid-template-columns:264px minmax(0,1fr);gap:2.4rem;align-items:start}
+.side{position:sticky;top:78px;max-height:calc(100vh - 96px);overflow-y:auto;
+  padding:1.4rem 0 3rem;font-size:.87rem}
+.side h5{font-size:.7rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);
+  margin:1.3rem 0 .5rem;font-weight:700}
+.side h5:first-child{margin-top:0}
+.side a{display:block;padding:.32rem .6rem;border-radius:7px;color:#404A5C;
+  border-left:2px solid transparent}
+.side a:hover{background:var(--navy-soft);text-decoration:none}
+.side a.on{background:var(--navy-soft);color:var(--navy);font-weight:700;border-left-color:var(--red)}
+main{padding:1.4rem 0 5rem;min-width:0}
+
+/* ---------- portada ---------- */
+.hero{background:linear-gradient(140deg,var(--navy) 0%,#1B3D74 55%,#2B5490 100%);
+  color:#fff;border-radius:20px;padding:2.6rem 2.3rem;margin-bottom:2rem;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-90px;top:-90px;width:330px;height:330px;
+  border-radius:50%;background:rgba(255,255,255,.055)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+  padding:.28rem .8rem;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-size:2.5rem;letter-spacing:-.025em;margin-bottom:.6rem}
+.hero p{color:#D5E0F2;max-width:62ch;margin:0 0 1.1rem;font-size:1.02rem}
+.hero .q{background:rgba(255,255,255,.1);border-left:3px solid #F2B8C2;border-radius:0 10px 10px 0;
+  padding:.85rem 1.1rem;font-style:italic;color:#EDF2FA;max-width:70ch;font-size:.96rem}
+.hero .meta{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.hero .meta span{background:rgba(255,255,255,.12);padding:.3rem .75rem;border-radius:8px;
+  font-size:.79rem;color:#E4ECF8}
+
+/* ---------- secciones ---------- */
+section{margin-bottom:2.6rem;scroll-margin-top:78px}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--red);margin-bottom:.35rem}
+h2{font-size:1.75rem;letter-spacing:-.02em;color:var(--navy);margin-bottom:.5rem}
+h3{font-size:1.16rem;color:var(--navy);margin:1.5rem 0 .5rem}
+h4{font-size:.98rem;color:var(--navy-2);margin:1.1rem 0 .35rem}
+p{margin:.55rem 0}
+.lead{font-size:1.05rem;color:#39424F}
+
+/* ---------- tarjetas ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.5rem 1.6rem;box-shadow:var(--shadow);margin-bottom:1.1rem}
+.blk{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);margin-bottom:1.2rem;overflow:hidden}
+.blk>header{display:flex;gap:.9rem;align-items:flex-start;padding:1.15rem 1.6rem;
+  background:linear-gradient(90deg,var(--navy-soft),#fff);border-bottom:1px solid var(--line)}
+.blk>header .num{flex:0 0 40px;height:40px;border-radius:11px;background:var(--navy);color:#fff;
+  display:grid;place-items:center;font-weight:800;font-size:1.02rem}
+.blk>header h3{margin:0;font-size:1.1rem}
+.blk>header .sub{font-size:.82rem;color:var(--muted);margin-top:.1rem}
+.blk .body{padding:1.3rem 1.6rem 1.5rem}
+
+/* ---------- avisos ---------- */
+.note{border-radius:11px;padding:.9rem 1.1rem;margin:1rem 0;font-size:.94rem;border:1px solid}
+.note .t{font-weight:800;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  display:block;margin-bottom:.3rem}
+.note.plantilla{background:var(--teal-soft);border-color:#BEDEDE;color:#15413F}
+.note.plantilla .t{color:var(--teal)}
+.note.ojo{background:var(--amber-soft);border-color:#EFD9A8;color:#5C3D00}
+.note.ojo .t{color:var(--amber)}
+.note.clave{background:var(--red-soft);border-color:#EDCBD3;color:#5F1220}
+.note.clave .t{color:var(--red)}
+
+/* ---------- definiciones ---------- */
+dl.def{margin:.9rem 0;display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem}
+dl.def dt{font-weight:700;color:var(--navy);white-space:nowrap}
+dl.def dd{margin:0;color:#39424F}
+@media(max-width:640px){dl.def{grid-template-columns:1fr}dl.def dd{margin-bottom:.5rem}}
+
+/* ---------- fórmulas ---------- */
+.frm{background:#FAFBFE;border:1px solid var(--line);border-left:3px solid var(--navy-2);
+  border-radius:0 10px 10px 0;padding:.4rem 1.1rem;margin:.9rem 0;overflow-x:auto}
+.frm .cap{font-size:.79rem;color:var(--muted);margin-top:-.2rem;padding-bottom:.5rem}
+.frm mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 0}
+mjx-container{max-width:100%}
+@media(max-width:700px){
+  .frm mjx-container{font-size:90%!important}
+  .frm{padding:.4rem .7rem}
+  table{font-size:.83rem}
+  th,td{padding:.45rem .55rem}
+}
+
+/* ---------- tablas ---------- */
+.tw{overflow-x:auto;margin:1rem 0;border:1px solid var(--line);border-radius:11px}
+table{border-collapse:collapse;width:100%;font-size:.89rem;background:#fff}
+th{background:var(--navy);color:#fff;text-align:left;padding:.6rem .8rem;font-weight:700;
+  font-size:.8rem;letter-spacing:.02em;white-space:nowrap}
+td{padding:.55rem .8rem;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even) td{background:#FAFBFE}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tfoot td{font-weight:700;background:var(--navy-soft) !important;border-top:2px solid var(--navy-2)}
+
+/* ---------- píldoras ---------- */
+.pill{display:inline-block;padding:.13rem .55rem;border-radius:999px;font-size:.75rem;font-weight:700}
+.pill.alto{background:#E3F4E8;color:#17643A}
+.pill.medio{background:#FDF3E0;color:#8A5B00}
+.pill.bajo{background:#FBEEF1;color:#9E1B32}
+
+/* ---------- botones ---------- */
+.btnrow{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:1.6rem 0}
+@media(max-width:760px){.btnrow{grid-template-columns:1fr}}
+.bigbtn{display:block;width:100%;text-align:left;cursor:pointer;border:1px solid var(--line);
+  border-radius:var(--radius);padding:1.35rem 1.5rem;background:var(--card);box-shadow:var(--shadow);
+  font-family:inherit;font-size:1rem;transition:transform .16s ease,box-shadow .16s ease,border-color .16s}
+.bigbtn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(22,48,92,.13);border-color:#C3CFE6}
+.bigbtn .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  font-size:1.15rem;margin-bottom:.7rem;color:#fff}
+.bigbtn.a .ic{background:linear-gradient(135deg,var(--teal),#12878A)}
+.bigbtn.b .ic{background:linear-gradient(135deg,var(--red),#C0304A)}
+.bigbtn strong{display:block;font-size:1.1rem;color:var(--navy);margin-bottom:.2rem}
+.bigbtn span{font-size:.88rem;color:var(--muted)}
+.bigbtn .st{margin-top:.75rem;font-size:.78rem;font-weight:800;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--navy-2)}
+.panel{display:none}
+.panel.open{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- ejercicios ---------- */
+.ex{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:1.15rem 1.4rem;margin-bottom:.95rem;box-shadow:var(--shadow)}
+.ex .hd{display:flex;gap:.75rem;align-items:baseline;margin-bottom:.5rem;flex-wrap:wrap}
+.ex .id{background:var(--navy);color:#fff;border-radius:7px;padding:.1rem .55rem;
+  font-weight:800;font-size:.8rem;font-variant-numeric:tabular-nums}
+.ex .tema{font-size:.76rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em}
+.ex .sol{border-top:1px dashed var(--line);margin-top:.9rem;padding-top:.9rem}
+.ex .sol .lbl{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:.35rem}
+.step{margin:.5rem 0 .5rem .2rem;padding-left:.9rem;border-left:2px solid var(--navy-soft)}
+.rta{background:var(--teal-soft);border:1px solid #BEDEDE;border-radius:9px;
+  padding:.7rem .95rem;margin-top:.7rem;font-weight:600;color:#12403F;font-size:.94rem}
+.reveal{background:#fff;border:1.5px solid var(--teal);color:var(--teal);border-radius:8px;
+  padding:.35rem .9rem;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;margin-top:.7rem}
+.reveal:hover{background:var(--teal);color:#fff}
+.hidden{display:none}
+.pista{font-size:.85rem;color:var(--muted);font-style:italic;margin-top:.5rem}
+
+/* ---------- galería de gráficos ---------- */
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1rem;margin:1.1rem 0}
+.gal figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:11px;padding:.9rem;text-align:center}
+.gal figcaption{font-size:.8rem;color:var(--muted);margin-top:.5rem}
+.gal figcaption b{display:block;color:var(--navy);font-size:.88rem}
+.gal svg{max-width:100%;height:auto}
+
+.tocgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem;margin-top:1rem}
+.tocgrid a{background:#fff;border:1px solid var(--line);border-radius:10px;padding:.7rem .9rem;
+  display:block;font-size:.88rem;font-weight:600;color:var(--navy)}
+.tocgrid a:hover{border-color:var(--navy-2);text-decoration:none;background:var(--navy-soft)}
+.tocgrid a b{display:block;font-size:.72rem;color:var(--red);text-transform:uppercase;letter-spacing:.06em}
+
+footer{border-top:1px solid var(--line);background:#fff;padding:2.2rem 0;margin-top:2rem}
+footer .in{max-width:1280px;margin:0 auto;padding:0 1.2rem;font-size:.86rem;color:var(--muted)}
+footer b{color:var(--navy)}
+.up{position:fixed;right:1.1rem;bottom:1.1rem;width:42px;height:42px;border-radius:12px;
+  background:var(--navy);color:#fff;border:0;cursor:pointer;font-size:1.1rem;display:none;z-index:70;
+  box-shadow:0 6px 20px rgba(22,48,92,.3)}
+.up.show{display:block}
+
+@media(max-width:980px){
+  .wrap{grid-template-columns:1fr;gap:0}
+  .side{position:static;max-height:none;display:none;border-bottom:1px solid var(--line);padding-bottom:1rem}
+  .side.open{display:block}
+  #menuBtn{display:block}
+  .topnav{display:none}
+  .hero{padding:1.9rem 1.4rem}
+  .hero h1{font-size:1.85rem}
+  .blk .body,.blk>header{padding-left:1.1rem;padding-right:1.1rem}
+  .card{padding:1.2rem}
+}
+@media print{
+  .side,.topbar,.up,.reveal,#menuBtn{display:none!important}
+  .panel{display:block!important}
+  .wrap{grid-template-columns:1fr}
+  .hidden{display:block!important}
+  body{background:#fff;font-size:11pt}
+  .blk,.card,.ex{break-inside:avoid;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="in">
+  <div class="brand"><span class="dot">σ</span><span>Estadística Aplicada · Proyecto de Aula</span></div>
+  <nav class="topnav">
+    <a href="#inicio">Inicio</a><a href="#fase1">Fase 1</a><a href="#fase2">Fase 2</a>
+    <a href="#fase3">Fase 3</a><a href="#fase4">Fase 4</a><a href="#ejemplos">Ejemplos</a>
+    <a href="#practica">Ejercicios</a><a href="#formulario">Formulario</a>
+  </nav>
+  <button id="menuBtn" aria-label="Abrir menú">☰ Menú</button>
+</div></div>
+
+<div class="wrap">
+<aside class="side" id="side"><h5>Inicio</h5><a href="#inicio">Presentación</a><a href="#datos">Los cuatro tipos de dato</a><a href="#ruta">Ruta de aprendizaje</a><h5>Fase 1 · Fundamentos y recolección</h5><a href="#b1">1. Naturaleza del dato y escalas de medición</a><a href="#b2">2. Recolección y organización de datos</a><a href="#b3">3. Tablas de frecuencia</a><h5>Fase 2 · Descripción y visualización</h5><a href="#b4">4. Visualización de datos</a><a href="#b5">5. Índices y porcentaje de cumplimiento</a><a href="#b6">6. Medidas de tendencia central</a><a href="#b7">7. Dispersión, variabilidad y posición</a><a href="#b8">8. Comparación entre periodos</a><h5>Fase 3 · Relación y priorización</h5><a href="#b9">9. Relación entre variables</a><a href="#b10">10. Priorización basada en datos</a><a href="#b11">11. Muestreo</a><h5>Fase 4 · Control y justificación</h5><a href="#b12">12. Distribuciones aplicadas al proceso</a><a href="#b13">13. Control estadístico de procesos</a><a href="#b14">14. Inferencia para justificar la mejora</a><h5>Práctica</h5><a href="#ejemplos">Ejemplos guiados</a><a href="#resueltos">20 ejercicios resueltos</a><a href="#propuestos">30 ejercicios propuestos</a><a href="#formulario">Formulario</a></aside>
+<main>
+
+<div class="hero" id="inicio">
+  <span class="tag">Cuarto semestre · Tecnología en Control de Calidad</span>
+  <h1>Estadística Aplicada</h1>
+  <p>Guía completa para el diagnóstico estadístico de procesos productivos. Todo lo que necesita saber
+  para aplicar el instrumento de diagnóstico, analizar los datos de la empresa y sustentar la propuesta
+  de mejora con evidencia cuantitativa.</p>
+  <div class="q">«¿Cómo mejorar los procesos productivos en empresas de bienes o servicios mediante el uso
+  de herramientas estadísticas y criterios de aseguramiento de la calidad, para garantizar productos y
+  servicios conformes y competitivos?»</div>
+  <div class="meta"><span>14 bloques temáticos</span><span>4 ejemplos guiados</span>
+  <span>20 ejercicios resueltos</span><span>30 ejercicios propuestos</span></div>
+</div>
+
+<section id="presentacion">
+  <div class="card">
+    <div class="eyebrow">Cómo usar esta guía</div>
+    <h2 style="font-size:1.35rem;margin-bottom:.6rem">Del dato de campo al informe técnico</h2>
+    <p class="lead">Los 14 bloques están ordenados según el momento del proyecto en que cada herramienta
+    se vuelve indispensable, no según la lógica interna de la estadística. Si va a visitar la empresa la
+    próxima semana, necesita los bloques 1 a 4. Si ya tiene los datos y está redactando el Entregable I,
+    vaya a los bloques 5 a 8.</p>
+    <p>Cada bloque trae las <b>definiciones</b>, las <b>fórmulas</b> y un recuadro
+    <span style="color:var(--teal);font-weight:700">En la plantilla</span> que indica exactamente en qué
+    casilla del instrumento de diagnóstico se aplica ese contenido.</p>
+    <div class="note plantilla"><span class="t">Lo que se evalúa en cada entregable</span>
+    <b>Entregable I</b> — Recolección y organización de datos, análisis descriptivo, medidas de tendencia
+    central, identificación de la variabilidad del proceso e interpretación de resultados para la toma de
+    decisiones. Incluye los tres gráficos obligatorios: barras, histograma y diagrama radial.<br><br>
+    <b>Entregable II</b> — Aplicación de herramientas estadísticas, propuesta de acciones de mejora basadas
+    en datos y justificación estadística de la mejora del proceso.</div>
+  </div>
+</section>
+
+<section id="datos">
+  <div class="eyebrow">Punto de partida</div>
+  <h2>Los cuatro tipos de dato que trae del campo</h2>
+  <p class="lead">El instrumento de diagnóstico genera cuatro clases de dato que <b>no se analizan igual</b>.
+  Reconocer la diferencia es lo primero, y es lo que evita los dos errores más frecuentes del proyecto:
+  promediar datos ordinales como si fueran continuos y comparar indicadores en unidades distintas sin normalizar.</p>
+  <div class="tw"><table>
+  <thead><tr><th>Origen en el instrumento</th><th>Tipo de dato</th><th>Herramienta estadística que corresponde</th></tr></thead>
+  <tbody>
+  <tr><td>Las 48 preguntas de las 10 dimensiones, escala 1 a 5</td><td><b>Cualitativo ordinal</b></td>
+  <td>Frecuencias, moda y mediana, índices normalizados de cumplimiento, barras y diagrama radial</td></tr>
+  <tr><td>Columnas de evidencia objetiva (Sí / Parcial / No) y tipo de evidencia</td><td><b>Cualitativo nominal</b></td>
+  <td>Frecuencia absoluta y relativa, barras, diagrama de Pareto</td></tr>
+  <tr><td>Hoja de indicadores: no conformes, reprocesos, tiempo de ciclo, costos de calidad</td><td><b>Cuantitativo de razón</b></td>
+  <td>Tendencia central, dispersión, coeficiente de variación, histograma, comparación entre periodos</td></tr>
+  <tr><td>Conteos de unidades no conformes, reprocesadas y rechazadas</td><td><b>Cuantitativo discreto</b></td>
+  <td>Proporciones, Pareto, cartas de control por atributos (p, np, c, u)</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="ruta">
+  <div class="eyebrow">Mapa del contenido</div>
+  <h2>Ruta de aprendizaje</h2>
+  <h3>Fase 1 · Fundamentos y recolección <span style="font-weight:400;color:var(--muted);font-size:.85rem">— Antes de la visita a la empresa</span></h3><div class="tocgrid"><a href="#b1"><b>Bloque 1</b>Naturaleza del dato y escalas de medición</a><a href="#b2"><b>Bloque 2</b>Recolección y organización de datos</a><a href="#b3"><b>Bloque 3</b>Tablas de frecuencia</a></div><h3>Fase 2 · Descripción y visualización <span style="font-weight:400;color:var(--muted);font-size:.85rem">— Cierra el Entregable I</span></h3><div class="tocgrid"><a href="#b4"><b>Bloque 4</b>Visualización de datos</a><a href="#b5"><b>Bloque 5</b>Índices y porcentaje de cumplimiento</a><a href="#b6"><b>Bloque 6</b>Medidas de tendencia central</a><a href="#b7"><b>Bloque 7</b>Dispersión, variabilidad y posición</a><a href="#b8"><b>Bloque 8</b>Comparación entre periodos</a></div><h3>Fase 3 · Relación y priorización <span style="font-weight:400;color:var(--muted);font-size:.85rem">— Puente entre entregables</span></h3><div class="tocgrid"><a href="#b9"><b>Bloque 9</b>Relación entre variables</a><a href="#b10"><b>Bloque 10</b>Priorización basada en datos</a><a href="#b11"><b>Bloque 11</b>Muestreo</a></div><h3>Fase 4 · Control y justificación <span style="font-weight:400;color:var(--muted);font-size:.85rem">— Cierra el Entregable II</span></h3><div class="tocgrid"><a href="#b12"><b>Bloque 12</b>Distribuciones aplicadas al proceso</a><a href="#b13"><b>Bloque 13</b>Control estadístico de procesos</a><a href="#b14"><b>Bloque 14</b>Inferencia para justificar la mejora</a></div>
+</section>
+
+<section id="fase1">
+  <div class="eyebrow">Fase 1 · Antes de la visita a la empresa</div><h2>Fundamentos y recolección</h2><article class="blk" id="b1">
+  <header><div class="num">1</div><div><h3>Naturaleza del dato y escalas de medición</h3>
+  <div class="sub">Qué tipo de dato trae cada casilla del instrumento</div></div></header>
+  <div class="body">
+<p>Todo el diagnóstico se apoya en un supuesto que casi nunca se hace explícito: <b>no todos los números
+significan lo mismo</b>. Un 4 en la escala del instrumento y un 4 % de reprocesos son dos objetos
+matemáticos distintos, y confundirlos invalida el análisis.</p>
+
+<dl class="def">
+  <dt>Población</dt><dd>Conjunto completo de elementos sobre los que se quiere concluir. En el proyecto suele ser toda la producción de un periodo o todos los procesos de la empresa. Se denota \(N\).</dd>
+  <dt>Muestra</dt><dd>Subconjunto de la población efectivamente observado. Se denota \(n\).</dd>
+  <dt>Unidad de observación</dt><dd>El objeto del que se toma el dato: un lote, una unidad producida, un turno, un proceso, un cliente. Definirla mal es el error de origen más frecuente.</dd>
+  <dt>Variable</dt><dd>Característica que cambia entre unidades de observación. Se denota \(X\); el valor observado en la unidad \(i\) es \(x_i\).</dd>
+  <dt>Dato</dt><dd>El valor registrado junto con su contexto: quién lo midió, cuándo, con qué instrumento y con qué evidencia. Un número sin trazabilidad no es un dato, es una opinión.</dd>
+  <dt>Parámetro y estadístico</dt><dd>El parámetro describe la población (\(\mu,\ \sigma,\ p\)); el estadístico describe la muestra (\(\bar{x},\ s,\ \hat{p}\)) y sirve para estimar el parámetro.</dd>
+</dl>
+
+<h4>Clasificación de variables</h4>
+<div class="tw"><table>
+<thead><tr><th>Tipo</th><th>Definición</th><th>Ejemplo en el diagnóstico</th><th>Qué se puede calcular</th></tr></thead>
+<tbody>
+<tr><td><b>Cualitativa nominal</b></td><td>Categorías sin orden natural</td><td>Sector económico, tipo de evidencia, causa de la no conformidad</td><td>Frecuencias, moda, proporciones</td></tr>
+<tr><td><b>Cualitativa ordinal</b></td><td>Categorías con orden, sin distancia definida entre ellas</td><td>Calificación 1 a 5 del instrumento; evidencia Sí / Parcial / No; nivel Alto / Medio / Bajo</td><td>Frecuencias, moda, <b>mediana</b>, cuartiles</td></tr>
+<tr><td><b>Cuantitativa discreta</b></td><td>Conteos; toma valores aislados</td><td>Número de unidades no conformes, quejas por mes, defectos por lote</td><td>Todo lo anterior más media, varianza</td></tr>
+<tr><td><b>Cuantitativa continua</b></td><td>Puede tomar cualquier valor dentro de un intervalo</td><td>Tiempo de ciclo, peso, temperatura, costo de calidad</td><td>Todos los estadísticos</td></tr>
+</tbody></table></div>
+
+<h4>Escalas de medición</h4>
+<dl class="def">
+  <dt>Nominal</dt><dd>Solo identifica y clasifica. Operación válida: igualdad. Un promedio de sectores económicos no significa nada.</dd>
+  <dt>Ordinal</dt><dd>Ordena, pero la distancia entre categorías no es constante. La diferencia entre 1 y 2 en el instrumento no equivale necesariamente a la diferencia entre 4 y 5.</dd>
+  <dt>De intervalo</dt><dd>Distancias constantes, cero arbitrario. Ejemplo típico: temperatura en grados Celsius.</dd>
+  <dt>De razón</dt><dd>Distancias constantes y cero absoluto que significa ausencia. Ejemplo: 0 % de no conformes significa realmente ninguno. Admite razones: 6 % es el doble de 3 %.</dd>
+</dl>
+
+<div class="note ojo"><span class="t">Cuidado con la escala del instrumento</span>
+La calificación de 1 a 5 es <b>ordinal</b>. En la práctica profesional se promedia y se construyen índices con ella,
+y este proyecto lo hace, pero el estudiante debe saber que está asumiendo que los intervalos son iguales.
+Por eso el análisis serio acompaña siempre la media con la <b>mediana</b>, la <b>moda</b> y la
+<b>distribución de frecuencias</b> completa, no solo con el promedio.</div>
+
+<div class="note plantilla"><span class="t">En la plantilla</span>
+Columna <i>Calificación (1-5)</i> → ordinal. Columna <i>Evidencia objetiva</i> → ordinal de tres niveles.
+Hoja <i>Indicadores_Cuantitativos</i> → todas de razón. Columna <i>Tipo de evidencia</i> → nominal.</div>
+</div></article><article class="blk" id="b2">
+  <header><div class="num">2</div><div><h3>Recolección y organización de datos</h3>
+  <div class="sub">De la visita al registro utilizable</div></div></header>
+  <div class="body">
+<p>El instrumento exige evidencia objetiva antes de calificar. Esa exigencia no es burocrática:
+es la que convierte una impresión en un dato.</p>
+
+<dl class="def">
+  <dt>Fuente primaria</dt><dd>Dato generado por el propio estudiante durante la visita: observación directa, medición, conteo, aplicación del instrumento.</dd>
+  <dt>Fuente secundaria</dt><dd>Registro que la empresa ya tenía: reportes de producción, actas, tableros de control, informes de inspección.</dd>
+  <dt>Evidencia objetiva</dt><dd>Documento, registro o hecho verificable que respalda la calificación. Sin ella la casilla se marca como hallazgo crítico.</dd>
+  <dt>Trazabilidad</dt><dd>Posibilidad de reconstruir de dónde salió cada número: fuente, fecha, responsable e instrumento de medición.</dd>
+  <dt>Frecuencia de medición</dt><dd>Cada cuánto se registra la variable: por unidad, por turno, diaria, semanal o mensual. Define el tamaño del subgrupo cuando se llegue a las cartas de control.</dd>
+  <dt>Dato faltante</dt><dd>Ausencia de valor. Nunca se reemplaza por cero: cero es un valor válido y falso en este contexto. Se deja vacío y se documenta.</dd>
+</dl>
+
+<h4>Criterios de calidad de un registro</h4>
+<div class="tw"><table>
+<thead><tr><th>Criterio</th><th>Pregunta de verificación</th><th>Si falla</th></tr></thead><tbody>
+<tr><td>Completitud</td><td>¿Están todos los periodos solicitados?</td><td>Se documenta el vacío; no se rellena</td></tr>
+<tr><td>Consistencia</td><td>¿La suma de las partes coincide con el total reportado?</td><td>Se pide aclaración antes de analizar</td></tr>
+<tr><td>Vigencia</td><td>¿Los datos corresponden al periodo declarado?</td><td>Se ajusta el alcance del diagnóstico</td></tr>
+<tr><td>Definición</td><td>¿La empresa calcula el indicador con la misma fórmula que la ficha técnica?</td><td>Se documenta la fórmula real usada</td></tr>
+</tbody></table></div>
+
+<div class="note plantilla"><span class="t">En la plantilla</span>
+Hoja <i>Indicadores_Cuantitativos</i>: pida mínimo tres periodos consecutivos. Con dos puntos solo hay una
+diferencia; con tres empieza a existir una tendencia. La columna <i>Fuente / evidencia</i> es lo que
+garantiza la trazabilidad, y la columna de <i>Frecuencia de medición</i> le dirá después si puede construir
+una carta de control o no.</div>
+
+<div class="note ojo"><span class="t">Regla de la casilla vacía</span>
+Si una pregunta del instrumento no aplica a la empresa, deje la celda <b>vacía</b>. No escriba 0 ni 1.
+El puntaje máximo de la dimensión se ajusta solo y esa pregunta deja de castigar el resultado.</div>
+</div></article><article class="blk" id="b3">
+  <header><div class="num">3</div><div><h3>Tablas de frecuencia</h3>
+  <div class="sub">Organizar antes de describir</div></div></header>
+  <div class="body">
+<p>La tabla de frecuencias es el paso intermedio entre el dato bruto y cualquier gráfico o estadístico.
+Se construye distinto según la variable sea cualitativa o cuantitativa.</p>
+
+<dl class="def">
+  <dt>Frecuencia absoluta \(f_i\)</dt><dd>Número de veces que aparece la categoría o clase \(i\).</dd>
+  <dt>Frecuencia relativa \(h_i\)</dt><dd>Proporción respecto del total. Multiplicada por 100 da el porcentaje.</dd>
+  <dt>Frecuencia acumulada \(F_i\)</dt><dd>Suma de las frecuencias hasta la clase \(i\). Solo tiene sentido si las categorías están ordenadas.</dd>
+  <dt>Marca de clase \(m_i\)</dt><dd>Punto medio del intervalo; representa a toda la clase en los cálculos.</dd>
+</dl>
+
+<div class="frm">\[ h_i=\frac{f_i}{n}, \qquad \sum_{i=1}^{k} f_i = n, \qquad \sum_{i=1}^{k} h_i = 1 \]</div>
+
+<h4>Agrupamiento de variables continuas</h4>
+<p>Cuando hay muchos valores distintos se agrupan en \(k\) clases. La regla de Sturges da un punto de partida:</p>
+<div class="frm">\[ R = x_{\max}-x_{\min}, \qquad k \approx 1 + 3{,}322\,\log_{10}(n), \qquad A = \frac{R}{k}, \qquad m_i=\frac{L_i+L_{i+1}}{2} \]
+<div class="cap">\(R\) rango · \(k\) número de clases · \(A\) amplitud · \(L_i\) límites de la clase</div></div>
+
+<div class="note clave"><span class="t">Criterio práctico</span>
+Sturges sugiere, no obliga. Redondee \(k\) a un entero cómodo y \(A\) hacia arriba a un valor con sentido
+técnico (0,5 %; 1 min; 5 g). Un histograma con clases de amplitud rara es correcto y a la vez inútil para
+conversar con la empresa.</div>
+
+<div class="note plantilla"><span class="t">En la plantilla</span>
+Con las 48 calificaciones del instrumento arme una tabla de frecuencias de la escala 1 a 5: le dirá de
+inmediato si la empresa está concentrada en calificaciones bajas o si hay polarización entre dimensiones
+muy fuertes y muy débiles, algo que el promedio general esconde.</div>
+</div></article></section><section id="fase2">
+  <div class="eyebrow">Fase 2 · Cierra el Entregable I</div><h2>Descripción y visualización</h2><article class="blk" id="b4">
+  <header><div class="num">4</div><div><h3>Visualización de datos</h3>
+  <div class="sub">Elegir el gráfico correcto es parte del análisis</div></div></header>
+  <div class="body">
+<p>El instructivo del proyecto exige tres gráficos: <b>barras</b>, <b>histograma</b> y <b>diagrama radial</b>.
+No son intercambiables, y saber por qué es exactamente lo que se evalúa.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Gráfico</th><th>Para qué sirve</th><th>Tipo de dato</th><th>Uso en el proyecto</th></tr></thead><tbody>
+<tr><td><b>Barras</b></td><td>Comparar magnitudes entre categorías separadas</td><td>Cualitativo o discreto</td><td>Comparar el % de cumplimiento de las 10 dimensiones</td></tr>
+<tr><td><b>Histograma</b></td><td>Mostrar la <i>forma</i> de la distribución: centro, dispersión, simetría</td><td>Cuantitativo continuo</td><td>Distribución del % de no conformes o del tiempo de ciclo</td></tr>
+<tr><td><b>Radial (telaraña)</b></td><td>Perfil simultáneo de varias dimensiones en una escala común</td><td>Índices normalizados</td><td>Perfil de diagnóstico de la hoja Resultados</td></tr>
+<tr><td><b>Pareto</b></td><td>Priorizar: separar lo vital de lo trivial</td><td>Conteos por categoría</td><td>Causas de no conformidad o de reproceso</td></tr>
+<tr><td><b>Líneas</b></td><td>Evolución en el tiempo</td><td>Serie temporal</td><td>Indicadores mes a mes</td></tr>
+<tr><td><b>Caja (boxplot)</b></td><td>Mediana, dispersión y valores atípicos</td><td>Cuantitativo</td><td>Comparar líneas o turnos entre sí</td></tr>
+</tbody></table></div>
+
+<div class="gal">
+<figure><svg viewBox="0 0 210 130" role="img" aria-label="Diagrama de barras">
+<line x1="26" y1="108" x2="200" y2="108" stroke="#B9C2D4"/><line x1="26" y1="14" x2="26" y2="108" stroke="#B9C2D4"/>
+<rect x="36" y="46" width="24" height="62" fill="#24467D" rx="2"/><rect x="70" y="30" width="24" height="78" fill="#24467D" rx="2"/>
+<rect x="104" y="66" width="24" height="42" fill="#24467D" rx="2"/><rect x="138" y="54" width="24" height="54" fill="#24467D" rx="2"/>
+<rect x="172" y="80" width="24" height="28" fill="#24467D" rx="2"/></svg>
+<figcaption><b>Barras</b>Comparación entre categorías</figcaption></figure>
+
+<figure><svg viewBox="0 0 210 130" role="img" aria-label="Histograma">
+<line x1="26" y1="108" x2="200" y2="108" stroke="#B9C2D4"/><line x1="26" y1="14" x2="26" y2="108" stroke="#B9C2D4"/>
+<rect x="30" y="88" width="28" height="20" fill="#0E6E70"/><rect x="58" y="62" width="28" height="46" fill="#0E6E70"/>
+<rect x="86" y="28" width="28" height="80" fill="#0E6E70"/><rect x="114" y="44" width="28" height="64" fill="#0E6E70"/>
+<rect x="142" y="76" width="28" height="32" fill="#0E6E70"/><rect x="170" y="96" width="28" height="12" fill="#0E6E70"/></svg>
+<figcaption><b>Histograma</b>Forma de la distribución</figcaption></figure>
+
+<figure><svg viewBox="0 0 150 130" role="img" aria-label="Diagrama radial">
+<g transform="translate(75,66)" fill="none" stroke="#D3DBEA">
+<polygon points="0,-50 47,-15 29,40 -29,40 -47,-15"/><polygon points="0,-33 31,-10 19,27 -19,27 -31,-10"/>
+<polygon points="0,-17 16,-5 10,13 -10,13 -16,-5"/>
+<line x1="0" y1="0" x2="0" y2="-50"/><line x1="0" y1="0" x2="47" y2="-15"/><line x1="0" y1="0" x2="29" y2="40"/>
+<line x1="0" y1="0" x2="-29" y2="40"/><line x1="0" y1="0" x2="-47" y2="-15"/>
+<polygon points="0,-38 28,-9 14,20 -20,28 -33,-11" fill="#9E1B32" fill-opacity=".28" stroke="#9E1B32" stroke-width="1.6"/></g></svg>
+<figcaption><b>Radial</b>Perfil multidimensional</figcaption></figure>
+
+<figure><svg viewBox="0 0 210 130" role="img" aria-label="Diagrama de Pareto">
+<line x1="26" y1="108" x2="200" y2="108" stroke="#B9C2D4"/><line x1="26" y1="14" x2="26" y2="108" stroke="#B9C2D4"/>
+<rect x="32" y="26" width="26" height="82" fill="#24467D"/><rect x="64" y="52" width="26" height="56" fill="#24467D"/>
+<rect x="96" y="74" width="26" height="34" fill="#24467D"/><rect x="128" y="88" width="26" height="20" fill="#5B79A8"/>
+<rect x="160" y="98" width="26" height="10" fill="#5B79A8"/>
+<polyline points="45,70 77,44 109,28 141,20 173,15" fill="none" stroke="#9E1B32" stroke-width="2"/>
+<line x1="26" y1="30" x2="200" y2="30" stroke="#9E1B32" stroke-dasharray="3 3" stroke-width="1"/></svg>
+<figcaption><b>Pareto</b>Pocas causas vitales</figcaption></figure>
+
+<figure><svg viewBox="0 0 210 130" role="img" aria-label="Grafico de lineas">
+<line x1="26" y1="108" x2="200" y2="108" stroke="#B9C2D4"/><line x1="26" y1="14" x2="26" y2="108" stroke="#B9C2D4"/>
+<polyline points="36,32 68,44 100,40 132,62 164,72 192,88" fill="none" stroke="#0E6E70" stroke-width="2.4"/>
+<g fill="#0E6E70"><circle cx="36" cy="32" r="3"/><circle cx="68" cy="44" r="3"/><circle cx="100" cy="40" r="3"/>
+<circle cx="132" cy="62" r="3"/><circle cx="164" cy="72" r="3"/><circle cx="192" cy="88" r="3"/></g></svg>
+<figcaption><b>Líneas</b>Tendencia temporal</figcaption></figure>
+
+<figure><svg viewBox="0 0 210 130" role="img" aria-label="Diagrama de caja">
+<line x1="26" y1="108" x2="200" y2="108" stroke="#B9C2D4"/>
+<g stroke="#24467D" stroke-width="1.6" fill="none">
+<line x1="46" y1="60" x2="70" y2="60"/><line x1="58" y1="60" x2="58" y2="40"/><line x1="58" y1="76" x2="58" y2="94"/>
+<line x1="46" y1="94" x2="70" y2="94"/></g>
+<rect x="42" y="46" width="32" height="34" fill="#24467D" fill-opacity=".22" stroke="#24467D" stroke-width="1.6"/>
+<line x1="42" y1="66" x2="74" y2="66" stroke="#9E1B32" stroke-width="2.4"/>
+<g stroke="#0E6E70" stroke-width="1.6" fill="none">
+<line x1="128" y1="44" x2="152" y2="44"/><line x1="140" y1="44" x2="140" y2="30"/><line x1="140" y1="86" x2="140" y2="98"/>
+<line x1="128" y1="98" x2="152" y2="98"/></g>
+<rect x="124" y="52" width="32" height="34" fill="#0E6E70" fill-opacity=".18" stroke="#0E6E70" stroke-width="1.6"/>
+<line x1="124" y1="70" x2="156" y2="70" stroke="#9E1B32" stroke-width="2.4"/>
+<circle cx="140" cy="20" r="3" fill="#9E1B32"/></svg>
+<figcaption><b>Caja</b>Dispersión y atípicos</figcaption></figure>
+</div>
+
+<div class="note ojo"><span class="t">Barras no es histograma</span>
+En el diagrama de barras las columnas van <b>separadas</b> porque las categorías son independientes.
+En el histograma van <b>pegadas</b> porque representan intervalos contiguos de una variable continua.
+Es el error de forma más frecuente en los informes de este proyecto.</div>
+</div></article><article class="blk" id="b5">
+  <header><div class="num">5</div><div><h3>Índices y porcentaje de cumplimiento</h3>
+  <div class="sub">Cómo la hoja Resultados convierte 48 calificaciones en un perfil</div></div></header>
+  <div class="body">
+<p>Este bloque explica exactamente lo que hace la hoja <i>Resultados</i> del instrumento, y es el que
+más se salta la gente. Cada dimensión tiene un número distinto de preguntas: la dimensión 2 tiene 9 y la
+dimensión 7 tiene 3. Los puntajes crudos <b>no se pueden comparar</b> entre sí.</p>
+
+<h4>Índice bruto de cumplimiento</h4>
+<div class="frm">\[ \%C=\frac{\displaystyle\sum_{i=1}^{n} x_i}{5\,n}\times 100 \]
+<div class="cap">\(x_i\) calificación de la pregunta \(i\) · \(n\) preguntas efectivamente calificadas · 5 es el máximo de la escala</div></div>
+
+<p>Dividir por el máximo propio de cada dimensión es lo que permite ponerlas todas en el mismo eje del
+diagrama radial. Eso es <b>normalizar</b>: llevar magnitudes de distinta escala a un rango común.</p>
+
+<h4>El problema del piso de la escala</h4>
+<p>La escala arranca en 1, no en 0. Una empresa calificada con <b>1 en absolutamente todo</b> obtiene:</p>
+<div class="frm">\[ \%C=\frac{1\cdot n}{5n}\times 100 = 20\,\% \]</div>
+<p>Es decir, el mínimo real no es 0 % sino 20 %, y la banda de interpretación <i>Bajo</i> definida entre
+0 % y 59 % tiene un tramo que jamás se alcanza. El índice normalizado corrige eso:</p>
+<div class="frm">\[ \%C_N=\frac{\left(\sum x_i\right)-x_{\min}\,n}{\left(x_{\max}-x_{\min}\right)n}\times 100
+=\frac{\left(\sum x_i\right)-n}{4n}\times 100 \]
+<div class="cap">Con \(x_{\min}=1\) y \(x_{\max}=5\). Ahora 1 en todo da 0 % y 5 en todo da 100 %.</div></div>
+
+<h4>Escala de interpretación</h4>
+<div class="tw"><table>
+<thead><tr><th>Nivel</th><th>Rango</th><th>Lectura para la empresa</th></tr></thead><tbody>
+<tr><td><span class="pill alto">Alto</span></td><td class="num">80 % – 100 %</td><td>Buen nivel de desarrollo; bajo nivel de no conformes, reprocesos y desperdicios</td></tr>
+<tr><td><span class="pill medio">Medio</span></td><td class="num">60 % – 79 %</td><td>Requiere mejoras puntuales</td></tr>
+<tr><td><span class="pill bajo">Bajo</span></td><td class="num">0 % – 59 %</td><td>Necesita revisión profunda o reestructuración</td></tr>
+</tbody></table></div>
+
+<div class="note plantilla"><span class="t">En la plantilla</span>
+La hoja <i>Resultados</i> trae ambas columnas. Use la <b>bruta</b> para reportar el puntaje tal como se
+calificó y la <b>normalizada</b> para priorizar dimensiones entre sí, que es donde el piso de la escala
+distorsiona. El gráfico radial toma por defecto la columna bruta.</div>
+</div></article><article class="blk" id="b6">
+  <header><div class="num">6</div><div><h3>Medidas de tendencia central</h3>
+  <div class="sub">El valor típico del proceso</div></div></header>
+  <div class="body">
+<dl class="def">
+  <dt>Media aritmética</dt><dd>Promedio; usa todos los datos y por eso es sensible a los valores extremos.</dd>
+  <dt>Mediana</dt><dd>Valor que deja el 50 % de los datos por debajo. Resistente a los atípicos.</dd>
+  <dt>Moda</dt><dd>Valor más frecuente. Es la única medida válida para variables nominales.</dd>
+</dl>
+
+<div class="frm">\[ \bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i \qquad\qquad \mu=\frac{1}{N}\sum_{i=1}^{N}x_i \]
+<div class="cap">\(\bar{x}\) media muestral · \(\mu\) media poblacional</div></div>
+
+<h4>Mediana</h4>
+<p>Con los datos ordenados de menor a mayor:</p>
+<div class="frm">\[ \tilde{x}=\begin{cases} x_{\left(\frac{n+1}{2}\right)} & \text{si } n \text{ es impar}\\[8pt]
+\dfrac{x_{\left(\frac{n}{2}\right)}+x_{\left(\frac{n}{2}+1\right)}}{2} & \text{si } n \text{ es par}\end{cases} \]</div>
+
+<h4>Media ponderada y de datos agrupados</h4>
+<div class="frm">\[ \bar{x}_p=\frac{\sum w_i x_i}{\sum w_i} \qquad\qquad \bar{x}_{agr}=\frac{\sum f_i\, m_i}{n} \]
+<div class="cap">\(w_i\) peso · \(m_i\) marca de clase · \(f_i\) frecuencia de la clase</div></div>
+
+<div class="note clave"><span class="t">Cuál usar</span>
+Distribución simétrica y sin atípicos: <b>media</b>. Distribución sesgada o con valores extremos
+(costos, tiempos de atención): <b>mediana</b>. Variable nominal u ordinal del instrumento: <b>moda</b> y
+<b>mediana</b>. Cuando media y mediana difieren mucho, esa diferencia ya es un hallazgo del diagnóstico:
+indica sesgo o presencia de casos extremos.</div>
+
+<div class="note plantilla"><span class="t">En la plantilla</span>
+Las columnas calculadas de la hoja <i>Indicadores_Cuantitativos</i> le dan la media de los tres periodos
+de cada indicador. Ese es el nivel típico que va en el texto de contextualización.</div>
+</div></article><article class="blk" id="b7">
+  <header><div class="num">7</div><div><h3>Dispersión, variabilidad y posición</h3>
+  <div class="sub">El bloque central del núcleo problémico</div></div></header>
+  <div class="body">
+<p>El núcleo problémico del semestre pide <b>reducir la variabilidad</b>. Ese es literalmente el objeto de
+este bloque. Dos procesos con la misma media pueden ser radicalmente distintos: el que varía menos es el
+que se puede controlar, predecir y certificar.</p>
+
+<h4>Rango, varianza y desviación estándar</h4>
+<div class="frm">\[ R=x_{\max}-x_{\min} \qquad s^{2}=\frac{\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^{2}}{n-1}
+\qquad s=\sqrt{s^{2}} \]
+<div class="cap">Se divide por \(n-1\) (grados de libertad) cuando los datos son una muestra; por \(N\) si son toda la población.</div></div>
+
+<h4>Coeficiente de variación</h4>
+<p>Es la desviación estándar expresada como porcentaje de la media. Al ser adimensional permite comparar
+la estabilidad de indicadores medidos en unidades distintas, que es justo lo que exige la hoja de
+indicadores del instrumento.</p>
+<div class="frm">\[ CV=\frac{s}{\bar{x}}\times 100\,\% \]</div>
+<div class="tw"><table>
+<thead><tr><th>CV</th><th>Interpretación del proceso</th></tr></thead><tbody>
+<tr><td class="num">&lt; 10 %</td><td>Muy estable, alta homogeneidad</td></tr>
+<tr><td class="num">10 % – 20 %</td><td>Estabilidad aceptable</td></tr>
+<tr><td class="num">20 % – 30 %</td><td>Variabilidad alta; conviene intervenir</td></tr>
+<tr><td class="num">&gt; 30 %</td><td>Proceso inestable; la media deja de ser representativa</td></tr>
+</tbody></table></div>
+
+<h4>Medidas de posición</h4>
+<div class="frm">\[ RIC=Q_3-Q_1 \qquad\qquad z=\frac{x-\bar{x}}{s} \]
+<div class="cap">\(RIC\) rango intercuartílico · \(z\) puntaje estandarizado: distancia a la media medida en desviaciones estándar</div></div>
+
+<h4>Detección de valores atípicos</h4>
+<div class="frm">\[ \text{Atípico si}\quad x < Q_1-1{,}5\,RIC \quad\text{o}\quad x > Q_3+1{,}5\,RIC \]</div>
+
+<div class="note ojo"><span class="t">Un atípico no se borra</span>
+En control de calidad el valor atípico suele ser <b>el dato más informativo del conjunto</b>: es el lote
+que falló, el turno que se salió de control, el día del paro de máquina. Se investiga y se documenta;
+eliminarlo del análisis sin explicación es falsear el diagnóstico.</div>
+
+<div class="note plantilla"><span class="t">En la plantilla</span>
+La columna <i>Coef. de variación</i> de la hoja de indicadores es la que le permite decir cuál de los
+indicadores de la empresa es el más inestable, y ese suele ser el punto de entrada del problema central.</div>
+</div></article><article class="blk" id="b8">
+  <header><div class="num">8</div><div><h3>Comparación entre periodos</h3>
+  <div class="sub">La evidencia de que el problema es persistente</div></div></header>
+  <div class="body">
+<p>El instructivo pide de forma explícita analizar la información <i>haciendo comparaciones entre periodos</i>.
+Un solo dato describe; una serie demuestra.</p>
+
+<h4>Variación absoluta y porcentual</h4>
+<div class="frm">\[ \Delta = x_t-x_{t-1} \qquad\qquad \Delta\% = \frac{x_t-x_{t-1}}{x_{t-1}}\times 100 \]</div>
+
+<h4>Tasa media de variación</h4>
+<p>El promedio de las variaciones porcentuales <b>no</b> es la variación media. Cuando se acumulan
+periodos, la tasa media es geométrica:</p>
+<div class="frm">\[ \bar{t}=\left(\frac{x_n}{x_0}\right)^{\frac{1}{n}}-1 \]
+<div class="cap">\(n\) es el número de periodos transcurridos, no el número de datos</div></div>
+
+<h4>Media móvil</h4>
+<p>Suaviza el ruido de corto plazo para dejar ver la tendencia:</p>
+<div class="frm">\[ MM_k(t)=\frac{1}{k}\sum_{j=0}^{k-1}x_{t-j} \]</div>
+
+<div class="note clave"><span class="t">Comparar nivel y comparar variabilidad</span>
+Al comparar dos periodos hay que mirar dos cosas: si cambió el <b>nivel</b> (la media) y si cambió la
+<b>estabilidad</b> (la desviación o el CV). Un proceso cuya media se mantiene pero cuya variabilidad se
+dispara está empeorando, aunque el indicador promedio diga que todo sigue igual. Ese matiz es el que
+distingue un informe de tecnólogo de un informe de operario.</div>
+</div></article></section><section id="fase3">
+  <div class="eyebrow">Fase 3 · Puente entre entregables</div><h2>Relación y priorización</h2><article class="blk" id="b9">
+  <header><div class="num">9</div><div><h3>Relación entre variables</h3>
+  <div class="sub">Correlación, Spearman y regresión simple</div></div></header>
+  <div class="body">
+<p>Hasta aquí se describió una variable a la vez. Para sustentar causas hay que estudiar cómo se mueven
+dos variables juntas.</p>
+
+<h4>Covarianza y correlación de Pearson</h4>
+<div class="frm">\[ s_{xy}=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{n-1} \qquad\qquad
+r=\frac{s_{xy}}{s_x\,s_y}=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum (x_i-\bar{x})^{2}\sum (y_i-\bar{y})^{2}}} \]
+<div class="cap">\(r\) siempre está entre \(-1\) y \(+1\)</div></div>
+
+<div class="tw"><table>
+<thead><tr><th>Valor de \(|r|\)</th><th>Fuerza de la relación lineal</th></tr></thead><tbody>
+<tr><td class="num">0,00 – 0,29</td><td>Nula o muy débil</td></tr>
+<tr><td class="num">0,30 – 0,49</td><td>Débil</td></tr>
+<tr><td class="num">0,50 – 0,69</td><td>Moderada</td></tr>
+<tr><td class="num">0,70 – 0,89</td><td>Fuerte</td></tr>
+<tr><td class="num">0,90 – 1,00</td><td>Muy fuerte</td></tr>
+</tbody></table></div>
+
+<h4>Correlación de Spearman</h4>
+<p>Pearson exige variables cuantitativas y relación lineal. Para las calificaciones <b>ordinales</b> del
+instrumento corresponde Spearman, que trabaja sobre los rangos:</p>
+<div class="frm">\[ r_s = 1-\frac{6\sum d_i^{2}}{n\,(n^{2}-1)} \]
+<div class="cap">\(d_i\) diferencia entre los rangos de las dos variables en la observación \(i\)</div></div>
+
+<h4>Regresión lineal simple</h4>
+<div class="frm">\[ \hat{y}=b_0+b_1x \qquad b_1=\frac{s_{xy}}{s_x^{2}} \qquad b_0=\bar{y}-b_1\bar{x} \qquad R^{2}=r^{2} \]
+<div class="cap">\(R^2\) es la proporción de la variación de \(y\) explicada por \(x\)</div></div>
+
+<div class="note ojo"><span class="t">Correlación no es causalidad</span>
+Que el % de no conformes baje cuando suben las horas de capacitación no demuestra que la capacitación sea
+la causa. Puede haber una tercera variable detrás (un cambio de proveedor en el mismo periodo, por ejemplo).
+La correlación <b>sustenta</b> una hipótesis causal; quien la confirma es el análisis técnico del proceso.</div>
+
+<div class="note plantilla"><span class="t">En la plantilla</span>
+Spearman sirve además para verificar la consistencia del propio diagnóstico: si dos estudiantes califican
+el mismo proceso por separado y \(r_s\) resulta alto, el instrumento se aplicó de forma confiable.</div>
+</div></article><article class="blk" id="b10">
+  <header><div class="num">10</div><div><h3>Priorización basada en datos</h3>
+  <div class="sub">De los hallazgos al problema central</div></div></header>
+  <div class="body">
+<p>El informe diagnóstico exige una <b>matriz de Vester</b> que alimenta el árbol de problemas. Vester es
+una herramienta de priorización, y su lógica es cuantitativa.</p>
+
+<h4>Diagrama de Pareto</h4>
+<p>Se ordenan las causas de mayor a menor frecuencia y se acumula el porcentaje. Las causas que
+concentran cerca del 80 % del efecto son las <b>vitales</b>; el resto son las triviales.</p>
+<div class="frm">\[ \%\text{acumulado}_k=\frac{\sum_{i=1}^{k} f_i}{\sum_{i=1}^{K} f_i}\times 100 \]</div>
+
+<h4>Matriz de Vester</h4>
+<p>Cada problema se confronta con todos los demás calificando de 0 a 3 cuánto lo causa
+(0 = no lo causa, 1 = lo causa indirectamente, 2 = lo causa de forma medianamente directa,
+3 = lo causa directamente).</p>
+<dl class="def">
+  <dt>Motricidad</dt><dd>Suma de la fila: cuánto influye ese problema sobre los demás.</dd>
+  <dt>Dependencia</dt><dd>Suma de la columna: cuánto es influido por los demás.</dd>
+</dl>
+<div class="tw"><table>
+<thead><tr><th>Cuadrante</th><th>Motricidad</th><th>Dependencia</th><th>Rol en el árbol de problemas</th></tr></thead><tbody>
+<tr><td><b>Crítico</b></td><td>Alta</td><td>Alta</td><td>Requiere atención inmediata; suele ser el problema central</td></tr>
+<tr><td><b>Activo</b></td><td>Alta</td><td>Baja</td><td>Causa raíz: es donde conviene intervenir</td></tr>
+<tr><td><b>Pasivo</b></td><td>Baja</td><td>Alta</td><td>Efecto o consecuencia</td></tr>
+<tr><td><b>Indiferente</b></td><td>Baja</td><td>Baja</td><td>Baja prioridad</td></tr>
+</tbody></table></div>
+
+<div class="note clave"><span class="t">El puente estadístico</span>
+La matriz de Vester se llena con juicio experto, y ahí está su debilidad. El aporte de Estadística
+Aplicada es <b>anclar cada calificación en un dato</b>: si se afirma que la falta de calibración causa
+directamente las no conformidades, debe existir un Pareto, una correlación o una comparación entre
+periodos que lo respalde. Sin eso, el árbol de problemas es una opinión ordenada.</div>
+</div></article><article class="blk" id="b11">
+  <header><div class="num">11</div><div><h3>Muestreo</h3>
+  <div class="sub">Cuántos datos sustentan la conclusión</div></div></header>
+  <div class="body">
+<dl class="def">
+  <dt>Marco muestral</dt><dd>Listado real desde el cual se selecciona la muestra. Si el marco está incompleto, ningún cálculo posterior lo arregla.</dd>
+  <dt>Sesgo de selección</dt><dd>Error sistemático que aparece cuando algunas unidades tienen menos probabilidad de ser elegidas.</dd>
+</dl>
+
+<div class="tw"><table>
+<thead><tr><th>Tipo de muestreo</th><th>Cómo se hace</th><th>Cuándo conviene</th></tr></thead><tbody>
+<tr><td><b>Aleatorio simple</b></td><td>Cada unidad tiene la misma probabilidad</td><td>Población homogénea y marco completo</td></tr>
+<tr><td><b>Sistemático</b></td><td>Se toma una de cada \(k\) unidades</td><td>Producción en línea continua</td></tr>
+<tr><td><b>Estratificado</b></td><td>Se divide en grupos homogéneos y se muestrea en cada uno</td><td>Varias líneas, turnos o referencias</td></tr>
+<tr><td><b>Por conglomerados</b></td><td>Se seleccionan grupos completos</td><td>Lotes, cajas o pallets ya conformados</td></tr>
+</tbody></table></div>
+
+<h4>Tamaño de muestra para estimar una proporción</h4>
+<div class="frm">\[ n_0=\frac{z_{\alpha/2}^{2}\;p\,(1-p)}{e^{2}} \qquad\qquad
+n=\frac{N\,z_{\alpha/2}^{2}\;p\,(1-p)}{e^{2}(N-1)+z_{\alpha/2}^{2}\;p\,(1-p)} \]
+<div class="cap">\(n_0\) población infinita · \(n\) población finita de tamaño \(N\) · \(e\) error máximo admisible · \(p\) proporción esperada</div></div>
+
+<h4>Tamaño de muestra para estimar una media</h4>
+<div class="frm">\[ n=\left(\frac{z_{\alpha/2}\;\sigma}{e}\right)^{2} \]</div>
+
+<div class="note clave"><span class="t">Valores de \(z\) más usados</span>
+90 % de confianza → \(z=1{,}645\) · 95 % → \(z=1{,}96\) · 99 % → \(z=2{,}576\).
+Cuando no se tiene información previa se usa \(p=0{,}5\), porque es el valor que maximiza \(p(1-p)\) y
+por lo tanto da el tamaño de muestra más conservador.</div>
+</div></article></section><section id="fase4">
+  <div class="eyebrow">Fase 4 · Cierra el Entregable II</div><h2>Control y justificación</h2><article class="blk" id="b12">
+  <header><div class="num">12</div><div><h3>Distribuciones aplicadas al proceso</h3>
+  <div class="sub">Binomial, Poisson y normal en clave de calidad</div></div></header>
+  <div class="body">
+<p>Aquí el texto guía de probabilidad se conecta con el proyecto. Cada distribución modela un tipo
+concreto de dato de proceso.</p>
+
+<h4>Distribución binomial</h4>
+<p>Modela el número de unidades no conformes en una muestra de \(n\) unidades, cuando cada una es
+conforme o no conforme con probabilidad constante \(p\).</p>
+<div class="frm">\[ P(X=k)=\binom{n}{k}p^{k}(1-p)^{n-k}, \qquad \mu=np, \qquad \sigma=\sqrt{np(1-p)} \]</div>
+
+<h4>Distribución de Poisson</h4>
+<p>Modela el número de defectos por unidad de producto, de área, de tiempo o de longitud, cuando los
+defectos ocurren de forma independiente a una tasa media \(\lambda\).</p>
+<div class="frm">\[ P(X=k)=\frac{e^{-\lambda}\lambda^{k}}{k!}, \qquad \mu=\sigma^{2}=\lambda \]</div>
+
+<div class="note ojo"><span class="t">Binomial o Poisson</span>
+Si cuenta <b>unidades defectuosas</b> dentro de una muestra de tamaño fijo → binomial.
+Si cuenta <b>defectos</b> que pueden repetirse en una misma unidad → Poisson. Una camisa puede tener tres
+defectos y sigue siendo una sola camisa no conforme: son dos preguntas distintas.</div>
+
+<h4>Distribución normal</h4>
+<p>Modela variables continuas del proceso: peso, longitud, tiempo, concentración.</p>
+<div class="frm">\[ Z=\frac{X-\mu}{\sigma} \qquad\qquad P(a<X<b)=\Phi\!\left(\frac{b-\mu}{\sigma}\right)-\Phi\!\left(\frac{a-\mu}{\sigma}\right) \]</div>
+<div class="frm">\[ \text{Fuera de especificación}=\Phi\!\left(\frac{LIE-\mu}{\sigma}\right)+\left[1-\Phi\!\left(\frac{LSE-\mu}{\sigma}\right)\right] \]
+<div class="cap">\(LIE\) límite inferior de especificación · \(LSE\) límite superior · \(\Phi\) función de distribución normal estándar</div></div>
+
+<div class="note clave"><span class="t">Regla empírica</span>
+En una distribución normal, el 68,27 % de los datos cae en \(\mu\pm\sigma\), el 95,45 % en \(\mu\pm2\sigma\)
+y el 99,73 % en \(\mu\pm3\sigma\). Ese último valor es el origen de los límites de control a tres sigma.</div>
+</div></article><article class="blk" id="b13">
+  <header><div class="num">13</div><div><h3>Control estadístico de procesos</h3>
+  <div class="sub">Distinguir el ruido de la señal</div></div></header>
+  <div class="body">
+<h4>Los dos tipos de variación</h4>
+<dl class="def">
+  <dt>Causa común</dt><dd>Variación inherente al proceso, presente siempre, producto de muchos factores pequeños. Define la capacidad natural del proceso. Reducirla exige cambiar el proceso.</dd>
+  <dt>Causa especial</dt><dd>Variación atribuible a un factor identificable y esporádico: un lote de materia prima distinto, una máquina descalibrada, un operario sin entrenar. Se elimina interviniendo esa causa.</dd>
+</dl>
+<p>Un proceso está <b>bajo control estadístico</b> cuando solo actúan causas comunes. Eso no significa que
+sea bueno: significa que es <b>predecible</b>.</p>
+
+<h4>Estructura general de una carta de control</h4>
+<div class="frm">\[ LC=\bar{\theta} \qquad LSC=\bar{\theta}+3\sigma_{\theta} \qquad LIC=\bar{\theta}-3\sigma_{\theta} \]</div>
+
+<h4>Carta p — proporción de unidades no conformes</h4>
+<div class="frm">\[ \bar{p}=\frac{\sum D_i}{\sum n_i} \qquad \sigma_p=\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}
+\qquad LSC,\,LIC=\bar{p}\pm 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}} \]
+<div class="cap">Si el \(LIC\) calculado resulta negativo se trunca en cero: una proporción no puede ser menor que 0.</div></div>
+
+<h4>Carta c — número de defectos por unidad de inspección</h4>
+<div class="frm">\[ \bar{c}=\frac{\sum c_i}{k} \qquad LSC,\,LIC=\bar{c}\pm 3\sqrt{\bar{c}} \]</div>
+
+<h4>Cartas \(\bar{X}\) y \(R\) — variables continuas</h4>
+<div class="frm">\[ \bar{\bar{X}}\pm A_2\bar{R} \qquad LSC_R=D_4\bar{R} \qquad LIC_R=D_3\bar{R} \]
+<div class="cap">\(A_2\), \(D_3\) y \(D_4\) son constantes tabuladas que dependen del tamaño del subgrupo</div></div>
+
+<h4>Límites de control frente a límites de especificación</h4>
+<div class="note ojo"><span class="t">No son lo mismo y nunca se grafican juntos</span>
+Los <b>límites de control</b> los calcula el proceso: describen lo que el proceso <i>hace</i>.
+Los <b>límites de especificación</b> los define el cliente o la norma técnica: describen lo que el proceso
+<i>debería</i> hacer. Un proceso puede estar perfectamente bajo control y aun así producir fuera de
+especificación. Comparar ambos es justamente el objeto de los índices de capacidad.</div>
+
+<h4>Índices de capacidad</h4>
+<div class="frm">\[ C_p=\frac{LSE-LIE}{6s} \qquad\qquad
+C_{pk}=\min\left(\frac{LSE-\bar{x}}{3s},\ \frac{\bar{x}-LIE}{3s}\right) \]</div>
+<div class="tw"><table>
+<thead><tr><th>Valor</th><th>Interpretación</th></tr></thead><tbody>
+<tr><td class="num">\(C_{pk} &lt; 1{,}00\)</td><td>Proceso no capaz: produce fuera de especificación</td></tr>
+<tr><td class="num">\(1{,}00 \le C_{pk} &lt; 1{,}33\)</td><td>Marginalmente capaz; requiere control estricto</td></tr>
+<tr><td class="num">\(C_{pk} \ge 1{,}33\)</td><td>Capaz; estándar mínimo habitual en la industria</td></tr>
+</tbody></table></div>
+<p><b>\(C_p\)</b> mide solo si la dispersión cabe dentro de la tolerancia. <b>\(C_{pk}\)</b> mide además si
+el proceso está centrado. Cuando \(C_{pk}\) es mucho menor que \(C_p\), el problema no es la variabilidad
+sino el centrado, y la acción correctiva es completamente distinta.</p>
+
+<h4>Señales de falta de control</h4>
+<ul>
+<li>Un punto por fuera de los límites de control.</li>
+<li>Siete u ocho puntos consecutivos del mismo lado de la línea central.</li>
+<li>Seis puntos consecutivos en ascenso o descenso continuo.</li>
+<li>Patrones cíclicos o alternancia sistemática.</li>
+</ul>
+</div></article><article class="blk" id="b14">
+  <header><div class="num">14</div><div><h3>Inferencia para justificar la mejora</h3>
+  <div class="sub">Demostrar que el cambio no es azar</div></div></header>
+  <div class="body">
+<p>El Entregable II pide la <b>justificación estadística de la mejora</b>. Afirmar que un indicador bajó
+de 8,4 % a 6,2 % no es una justificación: es una observación. La pregunta es si esa diferencia pudo
+producirse por simple azar del muestreo.</p>
+
+<h4>Intervalo de confianza para la media</h4>
+<div class="frm">\[ \bar{x}\pm t_{\alpha/2,\,n-1}\frac{s}{\sqrt{n}} \qquad\text{(con \(\sigma\) desconocida)} \qquad\qquad
+\bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}} \qquad\text{(con \(\sigma\) conocida)} \]</div>
+
+<h4>Intervalo de confianza para una proporción</h4>
+<div class="frm">\[ \hat{p}\pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]</div>
+
+<h4>Prueba de hipótesis: estructura</h4>
+<dl class="def">
+  <dt>\(H_0\)</dt><dd>Hipótesis nula: no hay diferencia. Es la que se somete a prueba.</dd>
+  <dt>\(H_1\)</dt><dd>Hipótesis alterna: sí hay diferencia. Es lo que el estudiante quiere sustentar.</dd>
+  <dt>\(\alpha\)</dt><dd>Nivel de significancia: riesgo aceptado de rechazar \(H_0\) siendo verdadera. Habitualmente 0,05.</dd>
+  <dt>Valor p</dt><dd>Probabilidad de observar un resultado al menos tan extremo como el obtenido si \(H_0\) fuera cierta. Si \(p<\alpha\) se rechaza \(H_0\).</dd>
+</dl>
+
+<h4>Comparación de dos proporciones — antes y después</h4>
+<div class="frm">\[ \bar{p}=\frac{x_1+x_2}{n_1+n_2} \qquad
+z=\frac{\hat{p}_1-\hat{p}_2}{\sqrt{\bar{p}(1-\bar{p})\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}} \]</div>
+
+<h4>Comparación de dos medias</h4>
+<div class="frm">\[ t=\frac{\bar{x}_1-\bar{x}_2}{s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}, \qquad
+s_p^{2}=\frac{(n_1-1)s_1^{2}+(n_2-1)s_2^{2}}{n_1+n_2-2} \]</div>
+
+<div class="note clave"><span class="t">Significancia estadística y relevancia técnica</span>
+Con muestras muy grandes, diferencias diminutas resultan estadísticamente significativas.
+Un cambio del 8,40 % al 8,35 % puede dar \(p<0{,}05\) y ser irrelevante para la empresa.
+El informe debe responder las dos preguntas: <b>¿es real?</b> (estadística) y
+<b>¿vale la pena?</b> (técnica y económica).</div>
+
+<div class="note plantilla"><span class="t">En la plantilla</span>
+Los datos de la hoja <i>Indicadores_Cuantitativos</i> de antes y después de la intervención son
+exactamente los insumos de esta prueba. Ese contraste es el cierre del Entregable II.</div>
+</div></article></section>
+
+<section id="ejemplos">
+  <div class="eyebrow">Aplicación</div>
+  <h2>Ejemplos guiados sobre la plantilla</h2>
+  <p class="lead">Cuatro casos resueltos de principio a fin con datos como los que va a encontrar en la
+  empresa. Cada uno recorre el mismo camino que usted tendrá que recorrer: datos crudos, cálculo,
+  interpretación y redacción para el informe.</p>
+  <article class="blk" id="ej1">
+  <header><div class="num">E1</div><div><h3>Tabular una dimensión del instrumento</h3>
+  <div class="sub">Bloques 3 y 5 · Lo primero que hará al volver de la empresa</div></div></header>
+  <div class="body">
+<p>Un estudiante aplicó el instrumento en una panificadora. La <b>dimensión 5 · Medición, indicadores y
+análisis estadístico de procesos</b> tiene 6 preguntas y obtuvo estas calificaciones:</p>
+<div class="tw"><table>
+<thead><tr><th>Pregunta orientadora</th><th class="num">Calificación</th><th>Evidencia</th></tr></thead><tbody>
+<tr><td>¿Los procesos cuentan con indicadores (KPI) definidos y con ficha técnica?</td><td class="num">4</td><td>Sí</td></tr>
+<tr><td>¿Existen registros históricos de al menos 3 a 6 meses?</td><td class="num">2</td><td>Parcial</td></tr>
+<tr><td>¿Los datos se recopilan y analizan de manera regular?</td><td class="num">3</td><td>Parcial</td></tr>
+<tr><td>¿Se usan herramientas estadísticas para analizar el desempeño?</td><td class="num">2</td><td>No</td></tr>
+<tr><td>¿Se identifican tendencias o variabilidad a partir de los datos?</td><td class="num">1</td><td>No</td></tr>
+<tr><td>¿Existen tableros de control o reportes de seguimiento visibles?</td><td class="num">2</td><td>No</td></tr>
+</tbody><tfoot><tr><td>Puntaje obtenido</td><td class="num">14</td><td>de 30 posibles</td></tr></tfoot></table></div>
+
+<h4>Paso 1 — Índice bruto</h4>
+<div class="frm">\[ \%C=\frac{14}{5\times 6}\times 100=\frac{14}{30}\times 100=46{,}7\,\% \]</div>
+
+<h4>Paso 2 — Índice normalizado</h4>
+<div class="frm">\[ \%C_N=\frac{14-6}{4\times 6}\times 100=\frac{8}{24}\times 100=33{,}3\,\% \]</div>
+
+<h4>Paso 3 — Nivel y lectura</h4>
+<p>Con 46,7 % bruto y 33,3 % normalizado, la dimensión queda en nivel
+<span class="pill bajo">Bajo</span> por ambos criterios. Note que el índice normalizado es
+<b>13,4 puntos porcentuales menor</b>: esa diferencia es exactamente el piso de la escala que se retira.</p>
+
+<h4>Paso 4 — Redacción para el informe</h4>
+<div class="note plantilla"><span class="t">Así se escribe en el texto de contextualización</span>
+«La dimensión de medición, indicadores y análisis estadístico alcanzó un cumplimiento del 46,7 %
+(33,3 % en escala normalizada), ubicándose en nivel bajo. La empresa cuenta con indicadores definidos
+(calificación 4), pero no dispone de registros históricos suficientes ni aplica herramientas
+estadísticas para el análisis del desempeño (calificaciones de 1 y 2 sin evidencia objetiva). En
+consecuencia, las decisiones sobre el proceso se toman sin soporte cuantitativo.»</div>
+
+<div class="note ojo"><span class="t">Lo que no se debe hacer</span>
+Reportar únicamente el promedio de 2,33 sobre 5. Ese número no le dice nada a la empresa y esconde que
+la mitad de las preguntas no tuvo ninguna evidencia objetiva. El índice porcentual y la tabla completa sí.</div>
+</div></article><article class="blk" id="ej2">
+  <header><div class="num">E2</div><div><h3>Describir un indicador cuantitativo de la empresa</h3>
+  <div class="sub">Bloques 3, 6 y 7 · El corazón del Entregable I</div></div></header>
+  <div class="body">
+<p>La empresa entregó el <b>% diario de productos no conformes</b> de 30 días de producción. Este es el
+recorrido completo: de los datos crudos a la conclusión.</p>
+
+<h4>Paso 1 — Rango y número de clases</h4>
+<div class="frm">\[ R=6{,}8-3{,}2=3{,}6 \qquad k=1+3{,}322\log_{10}(30)=5{,}91\approx 6 \qquad A=\frac{3{,}6}{6}=0{,}600\approx 0{,}6 \]</div>
+
+<h4>Paso 2 — Tabla de frecuencias</h4>
+<div class="tw"><table>
+<thead><tr><th>Clase (%)</th><th class="num">\(m_i\)</th><th class="num">\(f_i\)</th><th class="num">\(h_i\)</th><th class="num">\(h_i\) %</th><th class="num">\(F_i\)</th></tr></thead>
+<tbody><tr><td>[3,2 ; 3,8)</td><td class='num'>3,50</td><td class='num'>4</td><td class='num'>0,133</td><td class='num'>13,3 %</td><td class='num'>4</td></tr><tr><td>[3,8 ; 4,4)</td><td class='num'>4,10</td><td class='num'>5</td><td class='num'>0,167</td><td class='num'>16,7 %</td><td class='num'>9</td></tr><tr><td>[4,4 ; 5,0)</td><td class='num'>4,70</td><td class='num'>6</td><td class='num'>0,200</td><td class='num'>20,0 %</td><td class='num'>15</td></tr><tr><td>[5,0 ; 5,6)</td><td class='num'>5,30</td><td class='num'>6</td><td class='num'>0,200</td><td class='num'>20,0 %</td><td class='num'>21</td></tr><tr><td>[5,6 ; 6,2)</td><td class='num'>5,90</td><td class='num'>6</td><td class='num'>0,200</td><td class='num'>20,0 %</td><td class='num'>27</td></tr><tr><td>[6,2 ; 6,8)</td><td class='num'>6,50</td><td class='num'>3</td><td class='num'>0,100</td><td class='num'>10,0 %</td><td class='num'>30</td></tr></tbody>
+<tfoot><tr><td>Total</td><td class="num">—</td><td class="num">30</td><td class="num">1,000</td><td class="num">100 %</td><td class="num">—</td></tr></tfoot>
+</table></div>
+
+<h4>Paso 3 — Tendencia central y dispersión</h4>
+<div class="frm">\[ \bar{x}=\frac{\sum x_i}{30}=4{,}96\,\% \qquad
+s=\sqrt{\frac{\sum(x_i-\bar{x})^{2}}{29}}=0{,}94\,\% \qquad
+CV=\frac{0{,}94}{4{,}96}\times 100=19{,}04\,\% \]</div>
+
+<h4>Paso 4 — Interpretación</h4>
+<ul>
+<li>El proceso produce en promedio <b>4,96 %</b> de unidades no conformes al día.</li>
+<li>La desviación de <b>0,94 %</b> significa que un día cualquiera puede oscilar aproximadamente
+entre 4,02 % y 5,90 % (\(\bar{x}\pm s\)).</li>
+<li>El coeficiente de variación de <b>19,04 %</b> ubica al proceso en variabilidad
+<b>alta</b>: la media por sí sola no describe bien lo que ocurre día a día.</li>
+<li>La clase modal concentra el 20,0 % de los días, y la distribución es aproximadamente simétrica.</li>
+</ul>
+
+<div class="note clave"><span class="t">El hallazgo que alimenta el árbol de problemas</span>
+El problema de esta empresa no es solo el nivel de no conformes: es que <b>no puede predecirlo</b>.
+Un CV cercano al 20 % indica que el proceso responde a causas que nadie está controlando. Esa frase,
+sustentada en el número, es lo que convierte el diagnóstico en problematización.</div>
+</div></article><article class="blk" id="ej3">
+  <header><div class="num">E3</div><div><h3>Comparar dos indicadores y dos periodos</h3>
+  <div class="sub">Bloques 7 y 8 · Dónde está realmente el problema</div></div></header>
+  <div class="body">
+<p>La misma empresa entregó seis meses de dos indicadores. La pregunta del diagnóstico es: <b>¿cuál de
+los dos procesos es el crítico?</b></p>
+<div class="tw"><table>
+<thead><tr><th>Mes</th><th class="num">% No conformes</th><th class="num">% Reprocesos</th><th class="num">Variación no conformes</th></tr></thead>
+<tbody><tr><td>Enero</td><td class='num'>8,2 %</td><td class='num'>12,0 %</td><td class='num'>—</td></tr><tr><td>Febrero</td><td class='num'>7,6 %</td><td class='num'>11,4 %</td><td class='num'>-7,32 %</td></tr><tr><td>Marzo</td><td class='num'>6,9 %</td><td class='num'>11,8 %</td><td class='num'>-9,21 %</td></tr><tr><td>Abril</td><td class='num'>6,1 %</td><td class='num'>10,9 %</td><td class='num'>-11,59 %</td></tr><tr><td>Mayo</td><td class='num'>5,4 %</td><td class='num'>11,2 %</td><td class='num'>-11,48 %</td></tr><tr><td>Junio</td><td class='num'>4,8 %</td><td class='num'>10,6 %</td><td class='num'>-11,11 %</td></tr></tbody></table></div>
+
+<h4>Paso 1 — Nivel y estabilidad de cada indicador</h4>
+<div class="tw"><table>
+<thead><tr><th>Indicador</th><th class="num">Media</th><th class="num">Desviación \(s\)</th><th class="num">CV</th><th>Lectura</th></tr></thead><tbody>
+<tr><td>% No conformes</td><td class="num">6,50 %</td><td class="num">1,305</td><td class="num">20,08 %</td><td>Variabilidad alta</td></tr>
+<tr><td>% Reprocesos</td><td class="num">11,32 %</td><td class="num">0,531</td><td class="num">4,69 %</td><td>Muy estable</td></tr>
+</tbody></table></div>
+
+<div class="note ojo"><span class="t">Aquí está la trampa del ejercicio</span>
+A primera vista los reprocesos parecen el problema: su media (11,32 %) es más del doble que la de los no
+conformes (6,50 %). Pero el CV cuenta otra historia. Los reprocesos son <b>estables</b> (4,69 %): el
+proceso los produce de forma constante y predecible, son una causa común arraigada. Los no conformes
+varían mucho más (20,08 %) <i>porque están bajando mes a mes</i>.</div>
+
+<h4>Paso 2 — Variación total y tasa media</h4>
+<div class="frm">\[ \Delta\%_{total}=\frac{4{,}8-8{,}2}{8{,}2}\times 100=-41{,}46\,\% \qquad
+\bar{t}=\left(\frac{4{,}8}{8{,}2}\right)^{1/5}-1=-10{,}16\,\% \text{ mensual} \]</div>
+
+<h4>Paso 3 — Conclusión del diagnóstico</h4>
+<p>Los no conformes vienen cayendo a razón de <b>-10,16 % mensual</b>: algo que la empresa hizo está
+funcionando y debe documentarse. Los reprocesos, en cambio, llevan seis meses clavados alrededor del
+11,32 % con una variación total de apenas -11,7 %. <b>El proceso crítico son los reprocesos</b>, y no
+porque varíen, sino precisamente porque <b>no varían</b>: nada de lo que la empresa ha hecho los ha movido.</p>
+
+<div class="note clave"><span class="t">Regla de lectura</span>
+Nivel alto + variabilidad baja = causa común instalada, exige rediseño del proceso.
+Nivel alto + variabilidad alta = causas especiales, exige control y estandarización.
+Son dos diagnósticos distintos y dos planes de mejora distintos.</div>
+</div></article><article class="blk" id="ej4">
+  <header><div class="num">E4</div><div><h3>Priorizar causas con Pareto</h3>
+  <div class="sub">Bloque 10 · Del hallazgo al problema central</div></div></header>
+  <div class="body">
+<p>Con los registros de inspección de un semestre se clasificaron 350 no conformidades por causa.
+El objetivo es decidir <b>dónde intervenir primero</b>.</p>
+<div class="tw"><table>
+<thead><tr><th>Causa</th><th class="num">Frecuencia</th><th class="num">%</th><th class="num">% acumulado</th><th>Clasificación</th></tr></thead>
+<tbody><tr><td>Ajuste incorrecto de máquina</td><td class='num'>142</td><td class='num'>40,6 %</td><td class='num'>40,6 %</td><td><b>Vital</b></td></tr><tr><td>Materia prima fuera de especificación</td><td class='num'>96</td><td class='num'>27,4 %</td><td class='num'>68,0 %</td><td><b>Vital</b></td></tr><tr><td>Error de operario</td><td class='num'>58</td><td class='num'>16,6 %</td><td class='num'>84,6 %</td><td><b>Vital</b></td></tr><tr><td>Herramienta desgastada</td><td class='num'>31</td><td class='num'>8,9 %</td><td class='num'>93,4 %</td><td>Trivial</td></tr><tr><td>Condiciones ambientales</td><td class='num'>14</td><td class='num'>4,0 %</td><td class='num'>97,4 %</td><td>Trivial</td></tr><tr><td>Otras causas</td><td class='num'>9</td><td class='num'>2,6 %</td><td class='num'>100,0 %</td><td>Trivial</td></tr></tbody>
+<tfoot><tr><td>Total</td><td class="num">350</td><td class="num">100 %</td><td class="num">—</td><td>—</td></tr></tfoot></table></div>
+
+<h4>Paso 1 — Ordenar y acumular</h4>
+<p>Las causas se ordenan de mayor a menor frecuencia y se acumula el porcentaje hasta cruzar el 80 %.</p>
+
+<h4>Paso 2 — Identificar las causas vitales</h4>
+<p>Las <b>3 primeras causas</b> concentran el <b>84,6 %</b> de todas las no conformidades:</p>
+<ul><li>Ajuste incorrecto de máquina</li><li>Materia prima fuera de especificación</li><li>Error de operario</li></ul>
+
+<h4>Paso 3 — Decisión</h4>
+<div class="note clave"><span class="t">Lo que esto significa para el plan de mejora</span>
+Atacar las tres causas vitales elimina cerca de 84,6 de cada 100 no conformidades. Las tres restantes
+suman apenas el 15,4 % y no justifican inversión en esta fase. Este es el insumo directo de la
+<b>matriz de Vester</b>: las causas vitales entran al análisis de motricidad y dependencia, no las seis.</div>
+
+<div class="note plantilla"><span class="t">Conexión con el instrumento</span>
+La causa principal, Ajuste incorrecto de máquina, se relaciona con la dimensión 4 del diagnóstico (gestión de recursos, equipos y
+metrología) y con la dimensión 6 (control de calidad). Si esas dimensiones salieron en nivel bajo en el
+radial, el Pareto acaba de explicar <i>por qué</i>. Esa articulación entre el instrumento y los datos
+cuantitativos es lo que se evalúa en el Entregable I.</div>
+</div></article>
+</section>
+
+<section id="practica">
+  <div class="eyebrow">Práctica</div>
+  <h2>Banco de ejercicios</h2>
+  <p class="lead">Cincuenta ejercicios que cubren los 14 bloques. Los resueltos muestran el procedimiento
+  completo; los propuestos traen la respuesta final oculta para que usted la contraste después de intentarlo.</p>
+  <div class="btnrow">
+    <button class="bigbtn a" data-panel="pResueltos" id="btnR">
+      <div class="ic">✓</div><strong>20 ejercicios resueltos</strong>
+      <span>Procedimiento paso a paso, con la interpretación técnica de cada resultado.</span>
+      <div class="st" id="stR">▸ Ver ejercicios resueltos</div></button>
+    <button class="bigbtn b" data-panel="pPropuestos" id="btnP">
+      <div class="ic">✎</div><strong>30 ejercicios propuestos</strong>
+      <span>Para resolver. Cada uno con una pista y la respuesta final oculta tras un botón.</span>
+      <div class="st" id="stP">▸ Ver ejercicios propuestos</div></button>
+  </div>
+
+  <div class="panel" id="pResueltos">
+    <h3 id="resueltos" style="margin-top:1.4rem">Ejercicios resueltos</h3>
+    <p style="color:var(--muted);font-size:.92rem">Intente cada uno antes de leer la solución.
+    El objetivo no es reproducir la fórmula sino saber justificar por qué se eligió.</p>
+    <article class="ex">
+  <div class="hd"><span class="id">01</span><span class="tema">Bloque 1 · Escalas de medición</span></div>
+  <p>Clasifique las siguientes variables recogidas durante la visita indicando tipo y escala de medición: (a) número de quejas recibidas en el mes; (b) calificación de la pregunta «¿Se analizan las causas de las no conformidades?»; (c) temperatura del horno en °C; (d) nombre del proveedor de materia prima; (e) costo mensual de calidad en pesos.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>(a) Número de quejas:</b> cuantitativa <b>discreta</b>, escala de <b>razón</b>. Es un conteo y el cero significa ausencia real de quejas.</div>
+<div class="step"><b>(b) Calificación 1 a 5:</b> cualitativa <b>ordinal</b>, escala <b>ordinal</b>. Hay orden, pero la distancia entre 1 y 2 no es necesariamente igual a la que hay entre 4 y 5.</div>
+<div class="step"><b>(c) Temperatura en °C:</b> cuantitativa <b>continua</b>, escala de <b>intervalo</b>. El cero de la escala Celsius es convencional, no significa ausencia de temperatura; por eso no se puede decir que 40 °C sea «el doble de calor» que 20 °C.</div>
+<div class="step"><b>(d) Nombre del proveedor:</b> cualitativa <b>nominal</b>, escala <b>nominal</b>. Solo identifica.</div>
+<div class="step"><b>(e) Costo de calidad:</b> cuantitativa <b>continua</b>, escala de <b>razón</b>. Cero pesos es ausencia real de costo.</div>
+<div class="rta">La única variable de intervalo es la temperatura; todas las demás cuantitativas son de razón.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">02</span><span class="tema">Bloque 3 · Frecuencias de variable cualitativa</span></div>
+  <p>Al aplicar el instrumento en una empresa, de las 48 preguntas se registró evidencia objetiva así: «Sí» en 19 preguntas, «Parcial» en 14 y «No» en 15. Construya la tabla de frecuencias e interprete.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1.</b> Total de observaciones: \(n=19+14+15=48\).</div>
+<div class="step"><b>Paso 2.</b> Frecuencia relativa de cada categoría: \(h_i=f_i/n\).
+<div class="tw"><table><thead><tr><th>Evidencia</th><th class="num">\(f_i\)</th><th class="num">\(h_i\)</th><th class="num">%</th><th class="num">\(F_i\)</th></tr></thead><tbody>
+<tr><td>Sí</td><td class="num">19</td><td class="num">0,396</td><td class="num">39,6 %</td><td class="num">19</td></tr>
+<tr><td>Parcial</td><td class="num">14</td><td class="num">0,292</td><td class="num">29,2 %</td><td class="num">33</td></tr>
+<tr><td>No</td><td class="num">15</td><td class="num">0,313</td><td class="num">31,3 %</td><td class="num">48</td></tr>
+</tbody><tfoot><tr><td>Total</td><td class="num">48</td><td class="num">1,000</td><td class="num">100 %</td><td class="num">—</td></tr></tfoot></table></div></div>
+<div class="step"><b>Paso 3. Interpretación.</b> Solo el 39,6 % de las calificaciones está respaldado por evidencia
+objetiva completa. Sumando «Parcial» y «No», el <b>60,4 %</b> del diagnóstico se apoya en evidencia
+incompleta o inexistente. Eso, en sí mismo, es un hallazgo crítico: la empresa no documenta.</div>
+<div class="rta">Moda = «Sí» (39,6 %). El 60,4 % de las preguntas carece de evidencia objetiva completa,
+lo que constituye un hallazgo crítico de gestión documental.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">03</span><span class="tema">Bloque 3 · Tabla agrupada y regla de Sturges</span></div>
+  <p>Se registraron 30 mediciones diarias del % de no conformes. El mínimo fue 3,2 % y el máximo 6,8 %. Determine el número de clases, la amplitud, y calcule la media a partir de la tabla agrupada sabiendo que las frecuencias por clase fueron 4, 6, 7, 6, 4 y 3.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. Rango.</b> \(R=6{,}8-3{,}2=3{,}6\) puntos porcentuales.</div>
+<div class="step"><b>Paso 2. Número de clases (Sturges).</b>
+\[k=1+3{,}322\log_{10}(30)=1+3{,}322(1{,}4771)=5{,}91\approx 6\ \text{clases}\]</div>
+<div class="step"><b>Paso 3. Amplitud.</b> \(A=3{,}6/6=0{,}600\), que se redondea a <b>0,6</b> por comodidad técnica.</div>
+<div class="step"><b>Paso 4. Media de datos agrupados.</b> Con marcas de clase 3,5; 4,1; 4,7; 5,3; 5,9 y 6,5:
+\[\bar{x}_{agr}=\frac{\sum f_i m_i}{n}=\frac{(4)(3{,}5)+(6)(4{,}1)+(7)(4{,}7)+(6)(5{,}3)+(4)(5{,}9)+(3)(6{,}5)}{30}\]
+\[\bar{x}_{agr}=\frac{146{,}4}{30}=4{,}880\,\%\]</div>
+<div class="step"><b>Paso 5. Verificación.</b> La media calculada con los 30 datos originales es 4,96 %.
+La diferencia de 0,080 puntos es el error de agrupamiento: al representar cada clase por su marca se
+pierde algo de precisión, y es normal.</div>
+<div class="rta">k = 6 clases · A = 0,6 puntos porcentuales · \(\bar{x}_{agr}\) = 4,880 %
+(media real 4,96 %)</div></div></article><article class="ex">
+  <div class="hd"><span class="id">04</span><span class="tema">Bloque 5 · Porcentaje de cumplimiento</span></div>
+  <p>La dimensión 5 del instrumento tiene 6 preguntas y la empresa obtuvo las calificaciones 4, 2, 3, 2, 1 y 2. Calcule el porcentaje de cumplimiento bruto y el normalizado, y determine el nivel.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. Puntaje obtenido.</b> \(\sum x_i = 4+2+3+2+1+2=14\)</div>
+<div class="step"><b>Paso 2. Puntaje máximo.</b> \(5\times 6=30\)</div>
+<div class="step"><b>Paso 3. Índice bruto.</b> \[\%C=\frac{14}{30}\times 100=46{,}7\,\%\]</div>
+<div class="step"><b>Paso 4. Índice normalizado.</b> El mínimo posible es \(1\times 6=6\) y el recorrido real es \(4\times 6=24\):
+\[\%C_N=\frac{14-6}{24}\times 100=\frac{8}{24}\times 100=33{,}3\,\%\]</div>
+<div class="step"><b>Paso 5. Nivel.</b> Ambos valores están por debajo del 60 %, luego la dimensión es <span class="pill bajo">Bajo</span>.</div>
+<div class="rta">Bruto = 46,7 % · Normalizado = 33,3 % · Nivel <b>Bajo</b> por los dos criterios.
+La brecha de 13,4 puntos entre ambos índices corresponde al piso de la escala.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">05</span><span class="tema">Bloque 5 · Comparación entre dimensiones</span></div>
+  <p>Tres dimensiones del instrumento obtuvieron: dimensión 2 (9 preguntas) 27 puntos; dimensión 7 (3 preguntas) 9 puntos; dimensión 6 (8 preguntas) 26 puntos. ¿Cuál tiene el peor desempeño? Explique por qué los puntajes crudos no sirven para responder.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1.</b> Los puntajes crudos (27, 9 y 26) no son comparables porque cada
+dimensión tiene un máximo distinto: 45, 15 y 40 respectivamente. Hay que normalizar.</div>
+<div class="step"><b>Paso 2.</b> Se calcula el porcentaje de cumplimiento de cada una:
+<div class="tw"><table><thead><tr><th>Dimensión</th><th class="num">Preguntas</th><th class="num">Puntaje</th><th class="num">Máximo</th><th class="num">% Bruto</th><th class="num">% Normalizado</th></tr></thead>
+<tbody><tr><td>Dimensión 2 · Gestión de procesos</td><td class='num'>9</td><td class='num'>27</td><td class='num'>45</td><td class='num'>60,0 %</td><td class='num'>50,0 %</td></tr><tr><td>Dimensión 7 · Gestión de riesgos</td><td class='num'>3</td><td class='num'>9</td><td class='num'>15</td><td class='num'>60,0 %</td><td class='num'>50,0 %</td></tr><tr><td>Dimensión 6 · Control de calidad</td><td class='num'>8</td><td class='num'>26</td><td class='num'>40</td><td class='num'>65,0 %</td><td class='num'>56,2 %</td></tr></tbody></table></div></div>
+<div class="step"><b>Paso 3. Lectura.</b> Las dimensiones 2 y 7 <b>empatan</b> exactamente en 60,0 %
+bruto (50,0 % normalizado), pese a que una obtuvo 27 puntos y la otra apenas 9: el triple de puntaje crudo
+corresponde al triple de preguntas, así que el desempeño relativo es idéntico. La dimensión 6, cuyo puntaje
+crudo (26) es casi igual al de la dimensión 2 (27), resulta ser la <b>mejor</b> de las tres con 65,0 %.</div>
+<div class="rta">La dimensión 6 tiene el mejor desempeño (65,0 % bruto / 56,3 % normalizado) y las
+dimensiones 2 y 7 empatan en el peor (60,0 % / 50,0 %). Sin normalizar se habría concluido erróneamente
+que la dimensión 7 era la más débil por tener el puntaje crudo más bajo.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">06</span><span class="tema">Bloque 6 · Tendencia central</span></div>
+  <p>El tiempo de ciclo (min) de 12 lotes fue: 42, 45, 44, 47, 43, 45, 46, 44, 45, 48, 43, 45. Calcule media, mediana y moda.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. Media.</b> \[\bar{x}=\frac{537}{12}=44{,}750\ \text{min}\]</div>
+<div class="step"><b>Paso 2. Mediana.</b> Datos ordenados: 42, 43, 43, 44, 44, 45, 45, 45, 45, 46, 47, 48. Con \(n=12\) (par) la mediana es el
+promedio de las posiciones 6 y 7: \[\tilde{x}=\frac{45+45}{2}=45{,}0\ \text{min}\]</div>
+<div class="step"><b>Paso 3. Moda.</b> El valor 45 aparece 4 veces, más que cualquier otro.</div>
+<div class="step"><b>Paso 4. Interpretación.</b> Media, mediana y moda son prácticamente iguales
+(44,750 ≈ 45,0 = 45), lo que indica una distribución <b>simétrica y sin valores extremos</b>.
+En este caso la media es una medida representativa y se puede usar con confianza en el informe.</div>
+<div class="rta">Media = 44,750 min · Mediana = 45,0 min · Moda = 45 min</div></div></article><article class="ex">
+  <div class="hd"><span class="id">07</span><span class="tema">Bloque 7 · Varianza y desviación estándar</span></div>
+  <p>Con los mismos 12 tiempos de ciclo del ejercicio anterior, calcule la varianza y la desviación estándar muestrales.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1.</b> Media ya calculada: \(\bar{x}=44{,}750\) min.</div>
+<div class="step"><b>Paso 2. Suma de cuadrados de las desviaciones.</b>
+\[\sum(x_i-\bar{x})^{2}=32{,}25\]</div>
+<div class="step"><b>Paso 3. Varianza muestral.</b> Se divide por \(n-1=11\) porque son datos de muestra:
+\[s^{2}=\frac{32{,}25}{11}=2{,}9318\ \text{min}^{2}\]</div>
+<div class="step"><b>Paso 4. Desviación estándar.</b> \[s=\sqrt{2{,}9318}=1{,}7123\ \text{min}\]</div>
+<div class="step"><b>Paso 5. Interpretación.</b> La mayoría de los lotes se procesa entre
+43,04 y 46,46 minutos (\(\bar{x}\pm s\)). Un lote que tarde 52 minutos estaría a más de cuatro desviaciones
+de la media y debería investigarse como causa especial.</div>
+<div class="rta">\(s^{2}\) = 2,9318 min² · \(s\) = 1,7123 min</div></div></article><article class="ex">
+  <div class="hd"><span class="id">08</span><span class="tema">Bloque 7 · Coeficiente de variación</span></div>
+  <p>Durante seis meses el % de no conformes tuvo media 6,50 % con desviación 1,31 %, y el % de reprocesos tuvo media 11,32 % con desviación 0,53 %. ¿Cuál de los dos procesos es más inestable?</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1.</b> Comparar desviaciones directamente sería un error: 1,31 y 0,53
+están expresadas sobre medias muy distintas.</div>
+<div class="step"><b>Paso 2. Coeficiente de variación de cada indicador.</b>
+\[CV_{NC}=\frac{1{,}31}{6{,}50}\times 100=20{,}08\,\% \qquad CV_{REP}=\frac{0{,}53}{11{,}32}\times 100=4{,}69\,\%\]</div>
+<div class="step"><b>Paso 3. Interpretación.</b> El % de no conformes tiene una variabilidad relativa de
+20,08 %, más de cuatro veces la de los reprocesos (4,69 %). El proceso de no conformes es
+<b>notablemente más inestable</b>, aunque su nivel medio sea más bajo.</div>
+<div class="note ojo" style="margin:.7rem 0"><span class="t">Lo importante</span>
+Un CV por debajo del 10 % indica un proceso muy estable; por encima del 20 %, un proceso cuya media deja
+de ser representativa. Los reprocesos son estables pero altos: causa común. Los no conformes varían:
+hay causas especiales actuando.</div>
+<div class="rta">CV(no conformes) = 20,08 % · CV(reprocesos) = 4,69 % → el % de no conformes es el más
+inestable de los dos.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">09</span><span class="tema">Bloque 7 · Cuartiles, RIC y valores atípicos</span></div>
+  <p>El % de rechazos de 15 lotes fue: 3,1, 3,4, 3,6, 3,8, 4,0, 4,1, 4,3, 4,5, 4,6, 4,8, 5,0, 5,2, 5,5, 6,0, 9,8. Calcule los cuartiles, el rango intercuartílico y determine si existen valores atípicos.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1.</b> Los datos ya están ordenados, \(n=15\).</div>
+<div class="step"><b>Paso 2. Cuartiles.</b> \(Q_1=3{,}90\) · \(Q_2=4{,}50\) (mediana) · \(Q_3=5{,}10\)</div>
+<div class="step"><b>Paso 3. Rango intercuartílico.</b> \[RIC=Q_3-Q_1=5{,}10-3{,}90=1{,}20\]</div>
+<div class="step"><b>Paso 4. Límites de detección.</b>
+\[LI=Q_1-1{,}5\,RIC=3{,}90-1{,}5(1{,}20)=2{,}100 \qquad LS=Q_3+1{,}5\,RIC=5{,}10+1{,}5(1{,}20)=6{,}900\]</div>
+<div class="step"><b>Paso 5. Identificación.</b> El valor <b>9,8</b> supera el límite superior de 6,900,
+por lo tanto es un valor atípico. Ningún dato queda por debajo de 2,100.</div>
+<div class="note clave" style="margin:.7rem 0"><span class="t">Qué hacer con ese dato</span>
+No se elimina. Se investiga: ¿qué pasó ese día en la planta? Un rechazo del 9,8 % cuando el proceso
+opera normalmente entre 3 y 5 % casi siempre corresponde a un evento identificable, y ese evento es
+justamente lo que debe entrar al árbol de problemas.</div>
+<div class="rta">\(Q_1\) = 3,90 · \(Q_2\) = 4,50 · \(Q_3\) = 5,10 · RIC = 1,20 ·
+Límites [2,100 ; 6,900] · Valor atípico: <b>9,8</b></div></div></article><article class="ex">
+  <div class="hd"><span class="id">10</span><span class="tema">Bloque 7 · Puntaje z</span></div>
+  <p>La línea A produce con media 4,8 % de no conformes y desviación 0,6 %. La línea B, con media 6,5 % y desviación 1,5 %. Un lote de A salió con 6,0 % y uno de B con 8,0 %. ¿Cuál de los dos se aleja más de su propio proceso?</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1.</b> No se pueden comparar los valores absolutos: cada línea tiene su
+propio nivel y su propia variabilidad. Hay que estandarizar.</div>
+<div class="step"><b>Paso 2. Puntajes z.</b>
+\[z_A=\frac{6{,}0-4{,}8}{0{,}6}=2{,}00 \qquad z_B=\frac{8{,}0-6{,}5}{1{,}5}=1{,}000\]</div>
+<div class="step"><b>Paso 3. Interpretación.</b> El lote de la línea A está a <b>2,00 desviaciones</b> por
+encima de su media, mientras que el de B está a solo 1,000. Aunque en valor absoluto el lote de B tiene más
+no conformes (8,0 % contra 6,0 %), <b>el lote anómalo es el de la línea A</b>.</div>
+<div class="note ojo" style="margin:.7rem 0"><span class="t">Por qué importa</span>
+Con \(z=2{,}00\), en un proceso normal apenas un 2,3 % de los lotes debería superar ese valor. La línea A
+dio una señal; la línea B está simplemente teniendo un día normal dentro de su mala normalidad.</div>
+<div class="rta">\(z_A\) = 2,00 · \(z_B\) = 1,000 → el lote de la línea A se aleja más de su proceso.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">11</span><span class="tema">Bloque 8 · Variación, tasa media y media móvil</span></div>
+  <p>El % de no conformes de enero a junio fue: 8,2; 7,6; 6,9; 6,1; 5,4; 4,8. Calcule (a) la variación porcentual mes a mes, (b) la variación total, (c) la tasa media de variación mensual y (d) la media móvil de 3 periodos.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>(a) Variación mes a mes.</b> \(\Delta\%=\dfrac{x_t-x_{t-1}}{x_{t-1}}\times 100\)
+<div class="tw"><table><thead><tr><th>Periodo</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Abr</th><th class="num">May</th><th class="num">Jun</th></tr></thead>
+<tbody><tr><td>Variación</td><td class='num'>-7,32 %</td><td class='num'>-9,21 %</td><td class='num'>-11,59 %</td><td class='num'>-11,48 %</td><td class='num'>-11,11 %</td></tr></tbody></table></div></div>
+<div class="step"><b>(b) Variación total.</b> \[\frac{4{,}8-8{,}2}{8{,}2}\times 100=-41{,}46\,\%\]</div>
+<div class="step"><b>(c) Tasa media de variación.</b> No es el promedio de las variaciones anteriores, sino
+la media <b>geométrica</b>, porque los cambios se acumulan multiplicativamente:
+\[\bar{t}=\left(\frac{4{,}8}{8{,}2}\right)^{1/5}-1=(0{,}5854)^{0{,}2}-1=-10{,}157\,\%\ \text{mensual}\]</div>
+<div class="step"><b>(d) Media móvil de 3 periodos.</b> \(MM_3(t)=\dfrac{x_t+x_{t-1}+x_{t-2}}{3}\), a partir de marzo:
+<br>MM₃(marzo) = 7,567; MM₃(abril) = 6,867; MM₃(mayo) = 6,133; MM₃(junio) = 5,433</div>
+<div class="note clave" style="margin:.7rem 0"><span class="t">Error frecuente</span>
+El promedio aritmético de las cinco variaciones da −10,20 %, muy cerca del valor correcto, pero no es lo
+mismo. Aplicar −10,20 % cinco veces no devuelve 4,8. Solo la tasa geométrica reconstruye la serie.</div>
+<div class="rta">Variación total = -41,46 % · Tasa media = -10,157 % mensual ·
+MM₃ = 7,567; 6,867; 6,133; 5,433</div></div></article><article class="ex">
+  <div class="hd"><span class="id">12</span><span class="tema">Bloque 10 · Diagrama de Pareto</span></div>
+  <p>Las no conformidades de un semestre por causa fueron: ajuste incorrecto de máquina 142, materia prima fuera de especificación 96, error de operario 58, herramienta desgastada 31, condiciones ambientales 14 y otras 9. Identifique las causas vitales.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. Total.</b> \(\sum f_i = 350\) no conformidades.</div>
+<div class="step"><b>Paso 2. Ordenar de mayor a menor y acumular.</b>
+<div class="tw"><table><thead><tr><th>Causa</th><th class="num">\(f_i\)</th><th class="num">%</th><th class="num">% acum.</th></tr></thead>
+<tbody><tr><td>Ajuste incorrecto de máquina</td><td class='num'>142</td><td class='num'>40,6 %</td><td class='num'>40,6 %</td></tr><tr><td>Materia prima fuera de especificación</td><td class='num'>96</td><td class='num'>27,4 %</td><td class='num'>68,0 %</td></tr><tr><td>Error de operario</td><td class='num'>58</td><td class='num'>16,6 %</td><td class='num'>84,6 %</td></tr><tr><td>Herramienta desgastada</td><td class='num'>31</td><td class='num'>8,9 %</td><td class='num'>93,4 %</td></tr><tr><td>Condiciones ambientales</td><td class='num'>14</td><td class='num'>4,0 %</td><td class='num'>97,4 %</td></tr><tr><td>Otras causas</td><td class='num'>9</td><td class='num'>2,6 %</td><td class='num'>100,0 %</td></tr></tbody></table></div></div>
+<div class="step"><b>Paso 3. Aplicar la regla 80/20.</b> El porcentaje acumulado cruza el 80 % en la
+tercera causa (84,6 %). Las tres primeras son las <b>causas vitales</b>.</div>
+<div class="step"><b>Paso 4. Decisión.</b> Intervenir esas tres causas atacaría el 84,6 % de las no
+conformidades; las tres restantes suman apenas el 15,4 % y quedan fuera del alcance de esta fase.</div>
+<div class="rta">Causas vitales: Ajuste incorrecto de máquina, Materia prima fuera de especificación, Error de operario. Concentran el <b>84,6 %</b> de las 350 no conformidades.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">13</span><span class="tema">Bloque 9 · Correlación de Pearson y regresión</span></div>
+  <p>Se relacionan las horas de capacitación mensual (2, 4, 6, 8, 10, 12, 14, 16) con el % de no conformes (7,8, 7,1, 6,2, 5,9, 5,0, 4,6, 4,1, 3,5). Calcule r, R² y la recta de regresión, y estime el % de no conformes con 12 horas de capacitación.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. Coeficiente de correlación.</b>
+\[r=\frac{\sum(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum(x_i-\bar{x})^{2}\sum(y_i-\bar{y})^{2}}}=-0{,}9950\]
+Es una correlación <b>negativa muy fuerte</b>: a más capacitación, menos no conformes.</div>
+<div class="step"><b>Paso 2. Coeficiente de determinación.</b>
+\[R^{2}=r^{2}=0{,}9901 \Rightarrow 99{,}01\,\%\]
+El 99,01 % de la variación del % de no conformes queda explicada por las horas de capacitación.</div>
+<div class="step"><b>Paso 3. Recta de regresión.</b>
+\[\hat{y}=8{,}2464− 0{,}3024x\]
+La pendiente indica que <b>cada hora adicional de capacitación se asocia con una reducción de 0,3024
+puntos porcentuales</b> en el % de no conformes.</div>
+<div class="step"><b>Paso 4. Estimación para 12 horas.</b>
+\[\hat{y}=8{,}2464− 0{,}3024(12)=4{,}618\,\%\]</div>
+<div class="note ojo" style="margin:.7rem 0"><span class="t">Advertencia obligatoria en el informe</span>
+Un \(R^{2}\) de 99,01 % no demuestra que la capacitación <i>cause</i> la reducción. Pudo haber otros
+cambios simultáneos. La correlación sustenta la hipótesis; confirmarla exige el análisis técnico del proceso.</div>
+<div class="rta">r = -0,9950 · R² = 0,9901 (99,01 %) · ŷ = 8,2464 − 0,3024 x · Estimación con 12 h: 4,618 %</div></div></article><article class="ex">
+  <div class="hd"><span class="id">14</span><span class="tema">Bloque 9 · Correlación de Spearman</span></div>
+  <p>Dos estudiantes calificaron por separado 8 preguntas del instrumento en la misma empresa. Estudiante A: 4, 2, 5, 3, 1, 4, 2, 3. Estudiante B: 5, 2, 4, 3, 2, 4, 1, 3. Evalúe la concordancia entre ambos.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. ¿Por qué Spearman y no Pearson?</b> Las calificaciones del instrumento
+son <b>ordinales</b>. Pearson exige variables cuantitativas con relación lineal; Spearman trabaja sobre
+<b>rangos</b>, que es lo que corresponde a este tipo de dato.</div>
+<div class="step"><b>Paso 2. Fórmula.</b>
+\[r_s=1-\frac{6\sum d_i^{2}}{n(n^{2}-1)}\]
+donde \(d_i\) es la diferencia entre el rango asignado por cada evaluador a la observación \(i\).</div>
+<div class="step"><b>Paso 3. Cálculo.</b> Con \(n=8\) y trabajando sobre los rangos de ambas series
+(promediando los rangos en caso de empate), se obtiene \[r_s=0{,}8889\]</div>
+<div class="step"><b>Paso 4. Interpretación.</b> Un \(r_s\) de 0,8889 indica <b>concordancia muy fuerte</b>
+entre los dos evaluadores. El instrumento se aplicó de manera consistente y los resultados son confiables.</div>
+<div class="note plantilla" style="margin:.7rem 0"><span class="t">Uso práctico</span>
+Aplicar esta verificación entre dos integrantes del equipo es la forma más simple de demostrar en el
+informe que el diagnóstico no depende de quién lo aplicó. Si \(r_s\) sale bajo, hay que revisar el
+criterio de calificación antes de seguir.</div>
+<div class="rta">\(r_s\) = 0,8889 → concordancia muy fuerte; la aplicación del instrumento es confiable.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">15</span><span class="tema">Bloque 11 · Tamaño de muestra</span></div>
+  <p>Una empresa produce 4 200 unidades por mes. Se desea estimar la proporción de unidades no conformes con un nivel de confianza del 95 % y un error máximo del 5 %. No se tiene información previa. ¿Cuántas unidades deben inspeccionarse?</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. Parámetros.</b> \(N=4200\) · \(z_{0{,}025}=1{,}96\) ·
+\(e=0{,}05\) · \(p=0{,}5\) (sin información previa se usa 0,5 porque maximiza \(p(1-p)\) y da el tamaño más conservador).</div>
+<div class="step"><b>Paso 2. Fórmula para población finita.</b>
+\[n=\frac{N\,z^{2}\,p(1-p)}{e^{2}(N-1)+z^{2}\,p(1-p)}\]</div>
+<div class="step"><b>Paso 3. Sustitución.</b>
+\[n=\frac{(4200)(1{,}96)^{2}(0{,}5)(0{,}5)}{(0{,}05)^{2}(4199)+(1{,}96)^{2}(0{,}5)(0{,}5)}=352{,}044\]</div>
+<div class="step"><b>Paso 4. Redondeo.</b> El tamaño de muestra siempre se redondea <b>hacia arriba</b>:
+<b>353 unidades</b>.</div>
+<div class="note clave" style="margin:.7rem 0"><span class="t">Comparación útil</span>
+Si se aceptara un error del 10 % en lugar del 5 %, el tamaño caería a 94 unidades. Duplicar la precisión
+cuesta aproximadamente cuadruplicar la muestra: el error entra al cuadrado en el denominador.</div>
+<div class="rta">n = 352,044 → se inspeccionan <b>353 unidades</b>.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">16</span><span class="tema">Bloque 12 · Distribución binomial</span></div>
+  <p>Un proceso produce históricamente 6 % de unidades no conformes. Se toma una muestra aleatoria de 20 unidades. Calcule la probabilidad de encontrar exactamente 0, exactamente 1 y al menos 2 unidades no conformes, y determine el número esperado.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. Modelo.</b> Cada unidad es conforme o no conforme con probabilidad
+constante, y se cuenta el número de <b>unidades</b> no conformes en una muestra de tamaño fijo: es una
+<b>binomial</b> con \(n=20\) y \(p=0{,}06\).</div>
+<div class="step"><b>Paso 2. Función de probabilidad.</b>
+\[P(X=k)=\binom{20}{k}(0{,}06)^{k}(0{,}94)^{20-k}\]</div>
+<div class="step"><b>Paso 3. Cálculos.</b>
+\[P(X=0)=\binom{20}{0}(0{,}06)^{0}(0{,}94)^{20}=0{,}29011\]
+\[P(X=1)=\binom{20}{1}(0{,}06)^{1}(0{,}94)^{19}=0{,}37035\]
+\[P(X\ge 2)=1-P(X=0)-P(X=1)=1-0{,}29011-0{,}37035=0{,}33955\]</div>
+<div class="step"><b>Paso 4. Media y desviación.</b>
+\[\mu=np=20(0{,}06)=1{,}2\ \text{unidades} \qquad \sigma=\sqrt{np(1-p)}=1{,}0621\]</div>
+<div class="step"><b>Paso 5. Interpretación para el plan de muestreo.</b> Hay un 29,0 % de probabilidad
+de que la muestra salga completamente limpia aunque el proceso siga produciendo al 6 %. Un plan de
+aceptación que rechace el lote apenas aparezca <b>una</b> unidad no conforme rechazaría alrededor del
+34,0 % de los lotes que en realidad están en su nivel histórico normal.</div>
+<div class="rta">P(X=0) = 0,29011 · P(X=1) = 0,37035 · P(X≥2) = 0,33955 · μ = 1,2 unidades · σ = 1,0621</div></div></article><article class="ex">
+  <div class="hd"><span class="id">17</span><span class="tema">Bloque 12 · Distribución de Poisson</span></div>
+  <p>En una planta textil se registran en promedio 2,5 defectos por cada rollo de tela inspeccionado. Calcule la probabilidad de que un rollo tenga 0 defectos, exactamente 2 defectos, y a lo sumo 2 defectos.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. Modelo.</b> Se cuentan <b>defectos</b> que pueden repetirse en una misma
+unidad (un rollo puede tener varios), a una tasa media constante: es una <b>Poisson</b> con \(\lambda=2{,}5\).</div>
+<div class="step"><b>Paso 2. Función de probabilidad.</b>
+\[P(X=k)=\frac{e^{-\lambda}\lambda^{k}}{k!}=\frac{e^{-2{,}5}(2{,}5)^{k}}{k!}\]</div>
+<div class="step"><b>Paso 3. Cálculos.</b>
+\[P(X=0)=\frac{e^{-2{,}5}(2{,}5)^{0}}{0!}=e^{-2{,}5}=0{,}08208\]
+\[P(X=2)=\frac{e^{-2{,}5}(2{,}5)^{2}}{2!}=0{,}25652\]
+\[P(X\le 2)=P(0)+P(1)+P(2)=0{,}08208+0{,}20521+0{,}25652=0{,}54381\]</div>
+<div class="step"><b>Paso 4. Propiedad característica.</b> En la Poisson la media y la varianza coinciden:
+\(\mu=\sigma^{2}=\lambda=2{,}5\). Si al medir en planta la varianza resulta muy superior a la media, el
+modelo Poisson no aplica y hay sobredispersión: señal de que los defectos se agrupan por lotes en vez de
+ocurrir de forma independiente.</div>
+<div class="rta">P(X=0) = 0,08208 · P(X=2) = 0,25652 · P(X≤2) = 0,54381 ·
+Solo el 8,2 % de los rollos sale sin defectos.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">18</span><span class="tema">Bloque 12 · Distribución normal y especificaciones</span></div>
+  <p>El contenido neto de un producto envasado se distribuye normalmente con media 250 g y desviación estándar 1,8 g. Las especificaciones del cliente son 246 g a 254 g. Calcule el porcentaje de producto fuera de especificación y exprese el resultado en partes por millón.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><div class="step"><b>Paso 1. Estandarizar cada límite.</b>
+\[z_{LIE}=\frac{246-250}{1{,}8}=-2{,}222 \qquad z_{LSE}=\frac{254-250}{1{,}8}=2{,}222\]</div>
+<div class="step"><b>Paso 2. Probabilidad en cada cola.</b>
+\[P(X<246)=\Phi(-2{,}222)=1{,}3134\,\% \qquad P(X>254)=1-\Phi(2{,}222)=1{,}3134\,\%\]</div>
+<div class="step"><b>Paso 3. Total fuera de especificación.</b>
+\[1{,}3134\,\%+1{,}3134\,\%=2{,}6268\,\%\]</div>
+<div class="step"><b>Paso 4. Expresión en ppm.</b>
+\[2{,}6268\,\%\times 10\,000=26.268\ \text{ppm}\]</div>
+<div class="step"><b>Paso 5. Interpretación.</b> El proceso está perfectamente <b>centrado</b> (la media
+coincide con el punto medio de la tolerancia), pero su dispersión es demasiado grande: de cada millón de
+envases, cerca de 26.268 quedan fuera de especificación. Como el centrado ya es óptimo, la única
+acción de mejora posible es <b>reducir \(\sigma\)</b>.</div>
+<div class="rta">Fuera de especificación = 2,6268 % (26.268 ppm) · Dentro = 97,3732 %</div></div></article><article class="ex">
+  <div class="hd"><span class="id">19</span><span class="tema">Bloque 13 · Carta de control p y capacidad del proceso</span></div>
+  <p>(a) En 20 subgrupos de 150 unidades cada uno se encontraron 138 unidades no conformes en total. Construya los límites de la carta p. (b) El mismo proceso, medido como variable continua, tiene media 250,4 g y desviación 1,8 g frente a especificaciones de 246 a 254 g. Calcule Cp y Cpk.</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><h4>Parte (a) — Carta p</h4>
+<div class="step"><b>Paso 1. Línea central.</b>
+\[\bar{p}=\frac{\sum D_i}{\sum n_i}=\frac{138}{20\times 150}=\frac{138}{3000}=0{,}0460 \Rightarrow 4{,}60\,\%\]</div>
+<div class="step"><b>Paso 2. Desviación estándar de la proporción.</b>
+\[\sigma_p=\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}=\sqrt{\frac{(0{,}0460)(0{,}9540)}{150}}=0{,}01710\]</div>
+<div class="step"><b>Paso 3. Límites de control.</b>
+\[LSC=0{,}0460+3(0{,}01710)=0{,}09731 \Rightarrow 9{,}73\,\%\]
+\[LIC=0{,}0460-3(0{,}01710)=-0{,}00530 \Rightarrow \text{se trunca en } 0\]</div>
+<div class="step"><b>Paso 4. Interpretación.</b> Como el LIC calculado resulta negativo se fija en cero:
+una proporción no puede ser menor que 0. Cualquier subgrupo que supere el 9,73 % de no conformes
+(más de 14 unidades en 150) indica una <b>causa especial</b> que debe investigarse.</div>
+
+<h4>Parte (b) — Capacidad</h4>
+<div class="step"><b>Paso 1. Índice de capacidad potencial.</b>
+\[C_p=\frac{LSE-LIE}{6s}=\frac{254-246}{6(1{,}8)}=\frac{8}{10{,}8}=0{,}7407\]</div>
+<div class="step"><b>Paso 2. Índice de capacidad real.</b>
+\[C_{pu}=\frac{254-250{,}4}{3(1{,}8)}=0{,}6667 \qquad C_{pl}=\frac{250{,}4-246}{3(1{,}8)}=0{,}8148\]
+\[C_{pk}=\min(0{,}6667;\ 0{,}8148)=0{,}6667\]</div>
+<div class="step"><b>Paso 3. Interpretación.</b> Con \(C_p=0{,}7407\) el proceso <b>ni siquiera cabe</b> dentro
+de la tolerancia: su dispersión natural (\(6s=10{,}8\) g) es mayor que el ancho de especificación (8 g).
+Además \(C_{pk}=0{,}6667\) es menor que \(C_p\), lo que indica descentrado hacia el límite superior.
+El proceso <b>no es capaz</b> por partida doble.</div>
+<div class="note ojo" style="margin:.7rem 0"><span class="t">Orden de las acciones correctivas</span>
+Centrar el proceso es barato y rápido (ajuste de la dosificadora). Reducir \(\sigma\) es caro y lento
+(cambio de equipo o de método). Pero aquí <b>centrar no basta</b>: aun perfectamente centrado, con
+\(C_p=0{,}7407\) el proceso seguiría produciendo fuera de especificación. La acción obligatoria es reducir
+la variabilidad.</div>
+<div class="rta">(a) \(\bar{p}\) = 4,60 % · LSC = 9,73 % · LIC = 0 % ·
+(b) \(C_p\) = 0,7407 · \(C_{pk}\) = 0,6667 → proceso <b>no capaz</b>.</div></div></article><article class="ex">
+  <div class="hd"><span class="id">20</span><span class="tema">Bloque 14 · Intervalo de confianza y prueba de hipótesis</span></div>
+  <p>(a) Una muestra de 25 mediciones del % de no conformes dio media 4,85 % y desviación 0,92 %. Construya el intervalo de confianza del 95 % para la media del proceso. (b) Antes de la mejora se registraron 138 unidades no conformes en 3 000; después, 96 en 3 000. Con α = 0,05, ¿la reducción es estadísticamente significativa?</p>
+  <div class="sol"><div class="lbl">Solución paso a paso</div><h4>Parte (a) — Intervalo de confianza</h4>
+<div class="step"><b>Paso 1. Elegir la distribución.</b> \(n=25<30\) y \(\sigma\) es desconocida, luego se
+usa la <b>t de Student</b> con \(gl=n-1=24\) grados de libertad.</div>
+<div class="step"><b>Paso 2. Valor crítico.</b> \(t_{0{,}025;\,24}=2{,}0639\)</div>
+<div class="step"><b>Paso 3. Margen de error.</b>
+\[E=t\frac{s}{\sqrt{n}}=2{,}0639\cdot\frac{0{,}92}{\sqrt{25}}=0{,}3798\]</div>
+<div class="step"><b>Paso 4. Intervalo.</b>
+\[IC_{95\%}=4{,}85\pm0{,}3798=[4{,}470\ ;\ 5{,}230]\,\%\]</div>
+<div class="step"><b>Paso 5. Lectura.</b> Con 95 % de confianza, la verdadera media del proceso está entre
+4,470 % y 5,230 %. Si la meta de la empresa fuera 4,0 %, el intervalo completo queda por encima: la meta
+<b>no se está cumpliendo</b>, y eso es una conclusión estadísticamente sustentada, no una opinión.</div>
+
+<h4>Parte (b) — Prueba de dos proporciones</h4>
+<div class="step"><b>Paso 1. Hipótesis.</b> \(H_0:p_1=p_2\) (la mejora no cambió nada) frente a
+\(H_1:p_1\neq p_2\), con \(\alpha=0{,}05\).</div>
+<div class="step"><b>Paso 2. Proporciones muestrales.</b>
+\[\hat{p}_1=\frac{138}{3000}=0{,}0460\ (4{,}60\,\%) \qquad \hat{p}_2=\frac{96}{3000}=0{,}0320\ (3{,}20\,\%)\]</div>
+<div class="step"><b>Paso 3. Proporción combinada.</b>
+\[\bar{p}=\frac{138+96}{3000+3000}=0{,}03900\]</div>
+<div class="step"><b>Paso 4. Estadístico de prueba.</b>
+\[z=\frac{\hat{p}_1-\hat{p}_2}{\sqrt{\bar{p}(1-\bar{p})\left(\frac{1}{3000}+\frac{1}{3000}\right)}}=2{,}8008\]</div>
+<div class="step"><b>Paso 5. Decisión.</b> El valor p asociado es 0,005098, menor que \(\alpha=0{,}05\)
+(equivalente: \(|z|=2{,}8008>1{,}96\)). Se <b>rechaza \(H_0\)</b>.</div>
+<div class="note clave" style="margin:.7rem 0"><span class="t">Cómo se redacta esto en el Entregable II</span>
+«La proporción de unidades no conformes se redujo de 4,60 % a 3,20 %. La prueba de diferencia de
+proporciones arrojó z = 2,8008 con un valor p de 0,005098, inferior al nivel de significancia de 0,05, por lo
+que la reducción observada <b>no es atribuible al azar del muestreo</b> y se concluye que la acción de
+mejora tuvo un efecto estadísticamente significativo.» Esa frase, y no el simple porcentaje, es lo que
+pide el criterio de aprendizaje del Entregable II.</div>
+<div class="rta">(a) IC₉₅ % = [4,470 ; 5,230] % ·
+(b) z = 2,8008, valor p = 0,005098 &lt; 0,05 → la reducción <b>sí</b> es estadísticamente significativa.</div></div></article>
+  </div>
+
+  <div class="panel" id="pPropuestos">
+    <h3 id="propuestos" style="margin-top:1.4rem">Ejercicios propuestos</h3>
+    <p style="color:var(--muted);font-size:.92rem">Resuelva primero en papel, con el procedimiento completo.
+    El botón revela únicamente el resultado final: si no coincide, el error está en el procedimiento y ahí
+    es donde se aprende.</p>
+    <div style="margin:.6rem 0 1.2rem">
+      <button class="reveal" id="allOn">Mostrar todas las respuestas</button>
+      <button class="reveal" id="allOff">Ocultar todas</button></div>
+    <article class="ex">
+  <div class="hd"><span class="id">01</span><span class="tema">Bloque 1 · Escalas de medición</span></div>
+  <p>Clasifique cada variable recogida en el diagnóstico indicando tipo (cualitativa nominal, cualitativa ordinal, cuantitativa discreta o cuantitativa continua) y escala: (a) sector económico de la empresa; (b) calificación 1 a 5 de una pregunta del instrumento; (c) número de unidades no conformes en un lote; (d) tiempo de ciclo en minutos; (e) evidencia objetiva registrada como Sí, Parcial o No.</p>
+  <div class="pista">Pista: Pregúntese si las categorías admiten un orden y si el cero significa ausencia real.</div>
+  <button class="reveal" data-t="r1">Ver respuesta</button>
+  <div class="rta hidden" id="r1">(a) cualitativa nominal, escala nominal · (b) cualitativa ordinal, escala ordinal · (c) cuantitativa discreta, escala de razón · (d) cuantitativa continua, escala de razón · (e) cualitativa ordinal, escala ordinal</div></article><article class="ex">
+  <div class="hd"><span class="id">02</span><span class="tema">Bloque 2 · Recolección</span></div>
+  <p>Una empresa entrega el % de no conformes de tres meses, pero dos de los valores provienen de una estimación verbal del jefe de planta y no de un registro. Indique qué debe hacer el estudiante y cómo debe declararlo en el informe.</p>
+  <div class="pista">Pista: El instrumento exige evidencia objetiva antes de calificar.</div>
+  <button class="reveal" data-t="r2">Ver respuesta</button>
+  <div class="rta hidden" id="r2">No se pueden usar como dato con trazabilidad. Se registran como hallazgo crítico de ausencia de evidencia objetiva en la columna de observaciones, y si se emplean para ilustrar el análisis deben declararse explícitamente como dato estimado o simulado.</div></article><article class="ex">
+  <div class="hd"><span class="id">03</span><span class="tema">Bloque 3 · Tablas de frecuencia</span></div>
+  <p>Se registran 45 mediciones del tiempo de ciclo. El valor mínimo es 38 min y el máximo es 62 min. Determine el número de clases por la regla de Sturges y la amplitud de clase.</p>
+  <div class="pista">Pista: Redondee la amplitud hacia arriba para cubrir todo el rango.</div>
+  <button class="reveal" data-t="r3">Ver respuesta</button>
+  <div class="rta hidden" id="r3">k = 1 + 3,322·log₁₀(45) = 6.49 ≈ 6 clases; R = 62 − 38 = 24 min; A = 24/6 = 4.00 ≈ 4 min</div></article><article class="ex">
+  <div class="hd"><span class="id">04</span><span class="tema">Bloque 4 · Visualización</span></div>
+  <p>Para cada situación indique el gráfico adecuado: (a) comparar el % de cumplimiento de las 10 dimensiones del diagnóstico; (b) mostrar la forma de la distribución de 40 mediciones de peso; (c) priorizar 6 causas de no conformidad; (d) mostrar la evolución mensual del % de reprocesos.</p>
+  <div class="pista">Pista: El radial compara perfiles, el histograma muestra forma, el Pareto prioriza y las líneas muestran tendencia.</div>
+  <button class="reveal" data-t="r4">Ver respuesta</button>
+  <div class="rta hidden" id="r4">(a) diagrama radial o de telaraña · (b) histograma · (c) diagrama de Pareto · (d) gráfico de líneas</div></article><article class="ex">
+  <div class="hd"><span class="id">05</span><span class="tema">Bloque 5 · Índices</span></div>
+  <p>La dimensión 2 del instrumento tiene 9 preguntas y la empresa obtuvo 31 puntos. Calcule el porcentaje de cumplimiento bruto, el normalizado y el nivel según la escala Alto (≥80 %), Medio (≥60 %) y Bajo.</p>
+  <div class="pista">Pista: El normalizado resta el piso de la escala: (Σx − n)/(4n).</div>
+  <button class="reveal" data-t="r5">Ver respuesta</button>
+  <div class="rta hidden" id="r5">Bruto = 31/45 = 68.9 % (Medio) · Normalizado = (31−9)/(36) = 61.1 % (Medio)</div></article><article class="ex">
+  <div class="hd"><span class="id">06</span><span class="tema">Bloque 5 · Índices</span></div>
+  <p>Una dimensión de 4 preguntas obtuvo 16 puntos y otra de 8 preguntas obtuvo 32 puntos. ¿Cuál tiene mejor desempeño y por qué no se pueden comparar los puntajes crudos?</p>
+  <div class="pista">Pista: Divida cada puntaje por su propio máximo antes de comparar.</div>
+  <button class="reveal" data-t="r6">Ver respuesta</button>
+  <div class="rta hidden" id="r6">Ambas tienen el mismo desempeño relativo: 16/20 = 80 % y 32/40 = 80 % (normalizado: 75 % en las dos). Los puntajes crudos no son comparables porque el máximo depende del número de preguntas; hay que normalizar.</div></article><article class="ex">
+  <div class="hd"><span class="id">07</span><span class="tema">Bloque 6 · Tendencia central</span></div>
+  <p>Los siguientes son los tiempos de secado (min) de 12 lotes: 18.5, 19.2, 17.8, 20.1, 18.9, 19.5, 18.2, 19.8, 17.5, 20.5, 19.1, 18.7. Calcule media, mediana y rango.</p>
+  <div class="pista">Pista: Ordene los datos antes de buscar la mediana.</div>
+  <button class="reveal" data-t="r7">Ver respuesta</button>
+  <div class="rta hidden" id="r7">Media = 18.9833 min · Mediana = 19.00 min · Rango = 3.0 min</div></article><article class="ex">
+  <div class="hd"><span class="id">08</span><span class="tema">Bloque 6 · Tendencia central</span></div>
+  <p>En una auditoría, 3 procesos obtuvieron calificación 5, 7 procesos obtuvieron 4, 6 obtuvieron 3 y 4 obtuvieron 2. Calcule la calificación media ponderada y la moda.</p>
+  <div class="pista">Pista: Media ponderada: Σ(fᵢ·xᵢ)/Σfᵢ.</div>
+  <button class="reveal" data-t="r8">Ver respuesta</button>
+  <div class="rta hidden" id="r8">Media = (3·5 + 7·4 + 6·3 + 4·2)/20 = 3.45 · Moda = 4 (frecuencia 7)</div></article><article class="ex">
+  <div class="hd"><span class="id">09</span><span class="tema">Bloque 7 · Dispersión</span></div>
+  <p>El cumplimiento del plan de producción (%) de 8 semanas fue: 96.2, 97.8, 95.4, 98.1, 96.9, 97.2, 94.8, 96.5. Calcule la varianza y la desviación estándar muestrales.</p>
+  <div class="pista">Pista: Use n − 1 en el denominador: son datos de muestra.</div>
+  <button class="reveal" data-t="r9">Ver respuesta</button>
+  <div class="rta hidden" id="r9">Media = 96.6125 % · s² = 1.2841 · s = 1.1332 %</div></article><article class="ex">
+  <div class="hd"><span class="id">10</span><span class="tema">Bloque 7 · Coeficiente de variación</span></div>
+  <p>El % de no conformes tiene media 4.5 % y desviación 0.85 %. El costo de calidad mensual tiene media $152.0 millones y desviación $24.6 millones. ¿Cuál de los dos indicadores es más inestable?</p>
+  <div class="pista">Pista: El CV es adimensional: permite comparar variables en unidades distintas.</div>
+  <button class="reveal" data-t="r10">Ver respuesta</button>
+  <div class="rta hidden" id="r10">CV(no conformes) = 18.89 % · CV(costo) = 16.18 % → el % de noconformes es más inestable, pese a que su desviación absoluta es mucho menor.</div></article><article class="ex">
+  <div class="hd"><span class="id">11</span><span class="tema">Bloque 7 · Posición y atípicos</span></div>
+  <p>Los 15 valores del % de rechazos son: 2.1, 2.4, 2.6, 2.8, 3.0, 3.1, 3.3, 3.5, 3.6, 3.9, 4.2, 4.5, 4.8, 5.4, 8.9. Calcule Q₁, Q₂, Q₃, el rango intercuartílico y determine si hay valores atípicos por la regla de 1,5·RIC.</p>
+  <div class="pista">Pista: Todo valor fuera de Q₁ − 1,5·RIC o Q₃ + 1,5·RIC es atípico.</div>
+  <button class="reveal" data-t="r11">Ver respuesta</button>
+  <div class="rta hidden" id="r11">Q₁ = 2.90 · Q₂ = 3.50 · Q₃ = 4.35 · RIC = 1.45 · Límites: [0.725 ; 6.525] → 8,9 es atípico.</div></article><article class="ex">
+  <div class="hd"><span class="id">12</span><span class="tema">Bloque 7 · Puntaje z</span></div>
+  <p>La línea 1 tiene media de 3,2 % de no conformes con desviación 0,4 %. La línea 2 tiene media 7,5 % con desviación 1,8 %. Un lote de la línea 1 salió con 4,1 % y uno de la línea 2 con 9,9 %. ¿Cuál lote se aleja más de su propio proceso?</p>
+  <div class="pista">Pista: El puntaje z estandariza: mide distancias en desviaciones estándar.</div>
+  <button class="reveal" data-t="r12">Ver respuesta</button>
+  <div class="rta hidden" id="r12">z₁ = (4,1 − 3,2)/0,4 = 2.250 · z₂ = (9,9 − 7,5)/1,8 = 1.333 → el lote de la línea 1 se aleja más.</div></article><article class="ex">
+  <div class="hd"><span class="id">13</span><span class="tema">Bloque 8 · Comparación entre periodos</span></div>
+  <p>El % de reprocesos de enero a junio fue: 14.2, 13.6, 12.9, 12.1, 11.4, 10.8. Calcule la variación porcentual total y la tasa media de variación mensual.</p>
+  <div class="pista">Pista: La tasa media es geométrica, no el promedio de las variaciones.</div>
+  <button class="reveal" data-t="r13">Ver respuesta</button>
+  <div class="rta hidden" id="r13">Variación total = (10.8 − 14.2)/14.2 = -23.94 % · Tasa media geométrica = (10.8/14.2)^(1/5) − 1 = -5.327 % mensual</div></article><article class="ex">
+  <div class="hd"><span class="id">14</span><span class="tema">Bloque 8 · Media móvil</span></div>
+  <p>Con la serie semanal 8.0, 9.2, 7.4, 8.8, 9.6, 8.1, 7.9, 8.5, calcule la media móvil de 3 periodos.</p>
+  <div class="pista">Pista: La primera media móvil corresponde al tercer periodo.</div>
+  <button class="reveal" data-t="r14">Ver respuesta</button>
+  <div class="rta hidden" id="r14">MM3 = 8.2000; 8.4667; 8.6000; 8.8333; 8.5333; 8.1667</div></article><article class="ex">
+  <div class="hd"><span class="id">15</span><span class="tema">Bloque 8 · Comparación entre periodos</span></div>
+  <p>En el primer semestre el % de no conformes tuvo media 6,4 % y desviación 0,5 %. En el segundo semestre la media fue 6,3 % y la desviación 2,1 %. ¿Mejoró el proceso? Justifique.</p>
+  <div class="pista">Pista: Comparar solo medias oculta cambios en la variabilidad, que es lo que pide el núcleo problémico.</div>
+  <button class="reveal" data-t="r15">Ver respuesta</button>
+  <div class="rta hidden" id="r15">El nivel medio prácticamente no cambió (−1,6 %), pero la variabilidad se cuadruplicó: CV pasó de 7,81 % a 33,33 %. El proceso no mejoró, se volvió menos predecible.</div></article><article class="ex">
+  <div class="hd"><span class="id">16</span><span class="tema">Bloque 10 · Pareto</span></div>
+  <p>Las causas de devolución en un semestre fueron: falta de calibración 88, manipulación inadecuada 64, especificación ambigua 41, falla de empaque 22, transporte 13, otras 9. Construya la tabla de Pareto e identifique las causas vitales.</p>
+  <div class="pista">Pista: Ordene de mayor a menor y acumule hasta cruzar el 80 %.</div>
+  <button class="reveal" data-t="r16">Ver respuesta</button>
+  <div class="rta hidden" id="r16">Total = 237. Acumulados: Falta de calibración 37.1 %; Manipulación inadecuada 64.1 %; Especificación ambigua 81.4 %; Falla de empaque 90.7 %; Transporte 96.2 %; Otras 100.0 %. Las causas vitales son las 3 primeras, que concentran el 81.4 % de las devoluciones.</div></article><article class="ex">
+  <div class="hd"><span class="id">17</span><span class="tema">Bloque 9 · Correlación de Pearson</span></div>
+  <p>Se relaciona el número de auditorías internas por trimestre (1 a 7) con el % de no conformes: 9.4, 8.9, 8.6, 7.7, 7.5, 6.8, 6.9. Calcule r, R² y la recta de regresión.</p>
+  <div class="pista">Pista: Correlación fuerte no demuestra causalidad.</div>
+  <button class="reveal" data-t="r17">Ver respuesta</button>
+  <div class="rta hidden" id="r17">r = -0.9783 · R² = 0.9570 · ŷ = 9.8000 + (-0.4571)·x</div></article><article class="ex">
+  <div class="hd"><span class="id">18</span><span class="tema">Bloque 9 · Correlación de Spearman</span></div>
+  <p>Dos estudiantes calificaron por separado 10 preguntas del instrumento. Estudiante A: 5, 3, 4, 2, 5, 3, 1, 4, 2, 3. Estudiante B: 4, 3, 5, 2, 5, 2, 1, 4, 3, 3. Calcule el coeficiente de Spearman y evalúe la concordancia.</p>
+  <div class="pista">Pista: Spearman trabaja sobre rangos, que es lo que corresponde a datos ordinales.</div>
+  <button class="reveal" data-t="r18">Ver respuesta</button>
+  <div class="rta hidden" id="r18">rₛ = 0.8703 → concordancia alta entre los dos evaluadores; el instrumento se aplicó de forma consistente.</div></article><article class="ex">
+  <div class="hd"><span class="id">19</span><span class="tema">Bloque 11 · Muestreo</span></div>
+  <p>Un lote de 1 800 unidades debe inspeccionarse para estimar la proporción de no conformes con 95 % de confianza y error máximo de 4 %. Sin información previa, calcule el tamaño de muestra.</p>
+  <div class="pista">Pista: Sin información previa se usa p = 0,5, que maximiza el tamaño requerido.</div>
+  <button class="reveal" data-t="r19">Ver respuesta</button>
+  <div class="rta hidden" id="r19">n = 450.328 → se inspeccionan 451 unidades</div></article><article class="ex">
+  <div class="hd"><span class="id">20</span><span class="tema">Bloque 11 · Muestreo</span></div>
+  <p>La planta tiene tres líneas que producen 50 %, 30 % y 20 % del volumen. Si se van a inspeccionar 200 unidades con muestreo estratificado proporcional, ¿cuántas corresponden a cada línea?</p>
+  <div class="pista">Pista: En el estratificado proporcional cada estrato aporta según su peso en la población.</div>
+  <button class="reveal" data-t="r20">Ver respuesta</button>
+  <div class="rta hidden" id="r20">Línea 1: 100 unidades · Línea 2: 60 unidades · Línea 3: 40 unidades</div></article><article class="ex">
+  <div class="hd"><span class="id">21</span><span class="tema">Bloque 11 · Muestreo</span></div>
+  <p>Explique por qué tomar las 30 primeras unidades del turno de la mañana no constituye una muestra aleatoria y qué riesgo introduce en el diagnóstico.</p>
+  <div class="pista">Pista: Piense en qué unidades quedan sistemáticamente excluidas.</div>
+  <button class="reveal" data-t="r21">Ver respuesta</button>
+  <div class="rta hidden" id="r21">Es una muestra por conveniencia: no todas las unidades tienen la misma probabilidad de ser seleccionadas. Introduce sesgo de selección, porque el arranque de turno suele concentrar los ajustes de máquina, y sobrestima la tasa de no conformes.</div></article><article class="ex">
+  <div class="hd"><span class="id">22</span><span class="tema">Bloque 12 · Binomial</span></div>
+  <p>El proceso produce históricamente 8 % de unidades no conformes. Se toma una muestra de 15 unidades. Calcule la probabilidad de encontrar exactamente 0, exactamente 1 y al menos 2 no conformes.</p>
+  <div class="pista">Pista: P(X≥2) = 1 − P(X=0) − P(X=1).</div>
+  <button class="reveal" data-t="r22">Ver respuesta</button>
+  <div class="rta hidden" id="r22">P(X=0) = 0.28630 · P(X=1) = 0.37343 · P(X≥2) = 0.34027 · Media = 1.20 unidades</div></article><article class="ex">
+  <div class="hd"><span class="id">23</span><span class="tema">Bloque 12 · Poisson</span></div>
+  <p>El número de defectos por metro de tela sigue una Poisson con λ = 1.8. Calcule la probabilidad de que un metro tenga 0 defectos, exactamente 2, y más de 3.</p>
+  <div class="pista">Pista: Poisson modela conteos de eventos por unidad de área, tiempo o longitud.</div>
+  <button class="reveal" data-t="r23">Ver respuesta</button>
+  <div class="rta hidden" id="r23">P(X=0) = 0.16530 · P(X=2) = 0.26778 · P(X&gt;3) = 0.10871</div></article><article class="ex">
+  <div class="hd"><span class="id">24</span><span class="tema">Bloque 12 · Normal</span></div>
+  <p>El peso neto de un producto se distribuye normal con μ = 500.0 g y σ = 3.2 g. Las especificaciones son 494.0 g a 506.0 g. Calcule el porcentaje de producto fuera de especificación.</p>
+  <div class="pista">Pista: Estandarice cada límite y sume las dos colas.</div>
+  <button class="reveal" data-t="r24">Ver respuesta</button>
+  <div class="rta hidden" id="r24">z_LIE = -1.875 · z_LSE = 1.875 · Fuera = 6.0793 % (60793 ppm) · Dentro = 93.9207 %</div></article><article class="ex">
+  <div class="hd"><span class="id">25</span><span class="tema">Bloque 12 · Normal</span></div>
+  <p>Con el mismo proceso (μ = 500.0 g, σ = 3.2 g), ¿entre qué dos valores se encuentra el 95 % central del producto?</p>
+  <div class="pista">Pista: El 95 % central corresponde a z = ±1,96.</div>
+  <button class="reveal" data-t="r25">Ver respuesta</button>
+  <div class="rta hidden" id="r25">μ ± 1,96σ = [493.728 ; 506.272] g</div></article><article class="ex">
+  <div class="hd"><span class="id">26</span><span class="tema">Bloque 13 · Carta p</span></div>
+  <p>En 25 subgrupos de 200 unidades cada uno se encontraron en total 290 unidades no conformes. Calcule la línea central y los límites de control de la carta p.</p>
+  <div class="pista">Pista: Si el LIC calculado resulta negativo se trunca en cero.</div>
+  <button class="reveal" data-t="r26">Ver respuesta</button>
+  <div class="rta hidden" id="r26">p̄ = 0.05800 (5.800 %) · σ_p = 0.01653 · LSC = 0.10758 (10.758 %) · LIC = 0.00842 (0.842 %)</div></article><article class="ex">
+  <div class="hd"><span class="id">27</span><span class="tema">Bloque 13 · Capacidad</span></div>
+  <p>Las especificaciones de un diámetro son 9.5 mm a 10.5 mm. El proceso tiene media 10.15 mm y desviación 0.14 mm. Calcule Cp y Cpk e interprete.</p>
+  <div class="pista">Pista: Cp mide dispersión; Cpk mide dispersión y centrado a la vez.</div>
+  <button class="reveal" data-t="r27">Ver respuesta</button>
+  <div class="rta hidden" id="r27">Cp = 1.1905 · Cpu = 0.8333 · Cpl = 1.5476 · Cpk = 0.8333. Cp ligeramente superior a 1 indica que la dispersión apenas cabe en la tolerancia, y el descentrado hacia el límite superior hace caer el Cpk a 0,83: el proceso NO es capaz y requiere primero centrarse y luego reducir variabilidad.</div></article><article class="ex">
+  <div class="hd"><span class="id">28</span><span class="tema">Bloque 13 · Causas de variación</span></div>
+  <p>En una carta de control, ocho puntos consecutivos quedan por encima de la línea central aunque ninguno cruza los límites. ¿El proceso está bajo control? Explique.</p>
+  <div class="pista">Pista: Los límites de control no son el único criterio: también se evalúan rachas y tendencias.</div>
+  <button class="reveal" data-t="r28">Ver respuesta</button>
+  <div class="rta hidden" id="r28">No. Aunque no hay puntos fuera de límites, una racha de ocho puntos del mismo lado de la línea central es un patrón no aleatorio y señala una causa especial: hubo un corrimiento del proceso que debe investigarse.</div></article><article class="ex">
+  <div class="hd"><span class="id">29</span><span class="tema">Bloque 14 · Intervalo de confianza</span></div>
+  <p>Una muestra de 18 mediciones del tiempo de ciclo dio media 12.4 min y desviación 1.6 min. Construya el intervalo de confianza del 95 % para la media del proceso.</p>
+  <div class="pista">Pista: Con n &lt; 30 y σ desconocida se usa la distribución t de Student.</div>
+  <button class="reveal" data-t="r29">Ver respuesta</button>
+  <div class="rta hidden" id="r29">gl = 17 · t = 2.1098 · Margen de error = 0.7957 min · IC₉₅ % = [11.6043 ; 13.1957] min</div></article><article class="ex">
+  <div class="hd"><span class="id">30</span><span class="tema">Bloque 14 · Prueba de hipótesis</span></div>
+  <p>Antes de la mejora se encontraron 210 no conformes en 2500 unidades; después, 156 en 2500. Con α = 0,05, ¿la reducción es estadísticamente significativa?</p>
+  <div class="pista">Pista: H₀: p₁ = p₂ frente a H₁: p₁ ≠ p₂, con proporción combinada.</div>
+  <button class="reveal" data-t="r30">Ver respuesta</button>
+  <div class="rta hidden" id="r30">p̂₁ = 8.40 % · p̂₂ = 6.24 % · p̄ = 0.07320 · z = 2.9320 · valor p = 0.003368 &lt; 0,05 → se rechaza H₀: la reducción sí es estadísticamente significativa.</div></article>
+  </div>
+</section>
+
+<section id="formulario">
+  <div class="eyebrow">Referencia rápida</div>
+  <h2>Formulario</h2>
+  <div class="card">
+  <div class="tw"><table>
+  <thead><tr><th>Concepto</th><th>Fórmula</th><th>Uso en el proyecto</th></tr></thead><tbody>
+  <tr><td>Frecuencia relativa</td><td>\(h_i=f_i/n\)</td><td>Tablas de frecuencia</td></tr>
+  <tr><td>Regla de Sturges</td><td>\(k=1+3{,}322\log_{10}(n)\)</td><td>Clases del histograma</td></tr>
+  <tr><td>Media</td><td>\(\bar{x}=\frac{1}{n}\sum x_i\)</td><td>Nivel típico del indicador</td></tr>
+  <tr><td>Media agrupada</td><td>\(\bar{x}=\frac{\sum f_i m_i}{n}\)</td><td>Datos ya tabulados</td></tr>
+  <tr><td>Varianza muestral</td><td>\(s^{2}=\frac{\sum(x_i-\bar{x})^{2}}{n-1}\)</td><td>Variabilidad del proceso</td></tr>
+  <tr><td>Coeficiente de variación</td><td>\(CV=\frac{s}{\bar{x}}\times 100\)</td><td>Comparar indicadores distintos</td></tr>
+  <tr><td>Rango intercuartílico</td><td>\(RIC=Q_3-Q_1\)</td><td>Dispersión robusta</td></tr>
+  <tr><td>Atípico</td><td>\(x<Q_1-1{,}5\,RIC\) o \(x>Q_3+1{,}5\,RIC\)</td><td>Lotes o días anómalos</td></tr>
+  <tr><td>Puntaje z</td><td>\(z=\frac{x-\bar{x}}{s}\)</td><td>Comparar entre líneas o plantas</td></tr>
+  <tr><td>Cumplimiento bruto</td><td>\(\%C=\frac{\sum x_i}{5n}\times 100\)</td><td>Hoja Resultados</td></tr>
+  <tr><td>Cumplimiento normalizado</td><td>\(\%C_N=\frac{\sum x_i-n}{4n}\times 100\)</td><td>Comparar dimensiones</td></tr>
+  <tr><td>Variación porcentual</td><td>\(\Delta\%=\frac{x_t-x_{t-1}}{x_{t-1}}\times 100\)</td><td>Comparación entre periodos</td></tr>
+  <tr><td>Tasa media de variación</td><td>\(\bar{t}=\left(\frac{x_n}{x_0}\right)^{1/n}-1\)</td><td>Tendencia acumulada</td></tr>
+  <tr><td>Correlación de Pearson</td><td>\(r=\frac{s_{xy}}{s_x s_y}\)</td><td>Relación entre indicadores</td></tr>
+  <tr><td>Correlación de Spearman</td><td>\(r_s=1-\frac{6\sum d_i^{2}}{n(n^{2}-1)}\)</td><td>Calificaciones del instrumento</td></tr>
+  <tr><td>Tamaño de muestra (proporción)</td><td>\(n=\frac{Nz^{2}pq}{e^{2}(N-1)+z^{2}pq}\)</td><td>Plan de inspección</td></tr>
+  <tr><td>Binomial</td><td>\(P(X=k)=\binom{n}{k}p^{k}(1-p)^{n-k}\)</td><td>Unidades no conformes</td></tr>
+  <tr><td>Poisson</td><td>\(P(X=k)=\frac{e^{-\lambda}\lambda^{k}}{k!}\)</td><td>Defectos por unidad</td></tr>
+  <tr><td>Estandarización normal</td><td>\(Z=\frac{X-\mu}{\sigma}\)</td><td>% fuera de especificación</td></tr>
+  <tr><td>Carta p</td><td>\(\bar{p}\pm 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}\)</td><td>Control por atributos</td></tr>
+  <tr><td>Carta c</td><td>\(\bar{c}\pm 3\sqrt{\bar{c}}\)</td><td>Defectos por unidad</td></tr>
+  <tr><td>Capacidad potencial</td><td>\(C_p=\frac{LSE-LIE}{6s}\)</td><td>¿Cabe en la tolerancia?</td></tr>
+  <tr><td>Capacidad real</td><td>\(C_{pk}=\min\left(\frac{LSE-\bar{x}}{3s},\frac{\bar{x}-LIE}{3s}\right)\)</td><td>¿Está centrado?</td></tr>
+  <tr><td>IC para la media</td><td>\(\bar{x}\pm t_{\alpha/2}\frac{s}{\sqrt{n}}\)</td><td>Estimación del proceso</td></tr>
+  <tr><td>IC para proporción</td><td>\(\hat{p}\pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</td><td>Estimación de no conformes</td></tr>
+  <tr><td>Dos proporciones</td><td>\(z=\frac{\hat{p}_1-\hat{p}_2}{\sqrt{\bar{p}(1-\bar{p})\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}}\)</td><td>Justificación de la mejora</td></tr>
+  </tbody></table></div>
+  <div class="note clave"><span class="t">Valores críticos más usados</span>
+  Confianza 90 % → \(z=1{,}645\) · 95 % → \(z=1{,}96\) · 99 % → \(z=2{,}576\).
+  Regla empírica de la normal: \(\mu\pm\sigma\) contiene el 68,27 % · \(\mu\pm2\sigma\) el 95,45 % ·
+  \(\mu\pm3\sigma\) el 99,73 %.</div>
+  </div>
+</section>
+
+</main></div>
+
+<footer><div class="in">
+  <p><b>Estadística Aplicada · Guía del Proyecto de Aula de Cuarto Semestre</b><br>
+  Programa de Tecnología en Control de Calidad · Facultad de Ingeniería<br>
+  Fundación Universitaria Tecnológico Comfenalco · Cartagena de Indias</p>
+  <p style="margin-top:.8rem">Material docente elaborado por <b>Juan Carlos Acosta Jiménez, PhD.</b>
+  Construido a partir del Instructivo del Proyecto de Aula, el Instrumento de Diagnóstico Integral de
+  Procesos y la Estructura del Informe Diagnóstico Empresarial.</p>
+  <p style="margin-top:.8rem;font-size:.8rem">Notación matemática renderizada con MathJax.
+  Todos los resultados numéricos de los ejercicios fueron verificados computacionalmente.</p>
+</div></footer>
+
+<button class="up" id="up" aria-label="Volver arriba">↑</button>
+
+<script>
+(function(){
+  var d=document;
+  function on(el,ev,fn){ if(el) el.addEventListener(ev,fn); }
+
+  // paneles de ejercicios
+  d.querySelectorAll('.bigbtn').forEach(function(b){
+    on(b,'click',function(){
+      var p=d.getElementById(b.dataset.panel), open=p.classList.toggle('open');
+      var st=b.querySelector('.st');
+      st.textContent = open ? '▾ Ocultar' : '▸ Ver ejercicios';
+      if(open){ setTimeout(function(){ p.scrollIntoView({behavior:'smooth',block:'start'}); },60); }
+    });
+  });
+
+  // revelar respuestas
+  d.addEventListener('click',function(e){
+    var b=e.target.closest('.reveal[data-t]'); if(!b) return;
+    var t=d.getElementById(b.dataset.t), h=t.classList.toggle('hidden');
+    b.textContent = h ? 'Ver respuesta' : 'Ocultar respuesta';
+  });
+  on(d.getElementById('allOn'),'click',function(){
+    d.querySelectorAll('#pPropuestos .rta').forEach(function(r){ r.classList.remove('hidden'); });
+    d.querySelectorAll('#pPropuestos .reveal[data-t]').forEach(function(b){ b.textContent='Ocultar respuesta'; });
+  });
+  on(d.getElementById('allOff'),'click',function(){
+    d.querySelectorAll('#pPropuestos .rta').forEach(function(r){ r.classList.add('hidden'); });
+    d.querySelectorAll('#pPropuestos .reveal[data-t]').forEach(function(b){ b.textContent='Ver respuesta'; });
+  });
+
+  // menú móvil
+  on(d.getElementById('menuBtn'),'click',function(){ d.getElementById('side').classList.toggle('open'); });
+  d.querySelectorAll('#side a').forEach(function(a){
+    on(a,'click',function(){ if(window.innerWidth<=980) d.getElementById('side').classList.remove('open'); });
+  });
+
+  // resaltar sección activa
+  var links=[].slice.call(d.querySelectorAll('#side a'));
+  var targets=links.map(function(a){ return d.querySelector(a.getAttribute('href')); });
+  var up=d.getElementById('up');
+  function sync(){
+    var y=window.scrollY+120, best=-1;
+    targets.forEach(function(t,i){ if(t && t.offsetTop<=y) best=i; });
+    links.forEach(function(a,i){ a.classList.toggle('on', i===best); });
+    up.classList.toggle('show', window.scrollY>600);
+  }
+  on(window,'scroll',sync); sync();
+  on(up,'click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+})();
+</script>
+</body></html>
